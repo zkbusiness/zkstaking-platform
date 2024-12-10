@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff1c;
+  --foreground: #000000;
+}
+
+body {
+  background-color: var(--foreground);
+  color: white;
+}
+
+section {
+  position: relative;
+}
+
+@media (min-width: 1280px) {
+  .video-wrapper::before,
+  .video-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    width: 10%;
+    height: 100%;
+    pointer-events: none; /* Allow interaction with the video */
+    border-radius: inherit; /* Match the border-radius of the parent */
+  }
+  .video-wrapper::before {
+    left: 0;
+    background-image: linear-gradient(to left, transparent, black);
+  }
+  .video-wrapper::after {
+    right: 0;
+    background-image: linear-gradient(to right, transparent, black);
+  }
+}
