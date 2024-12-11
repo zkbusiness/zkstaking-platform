@@ -9,6 +9,7 @@ import { getTransactionReceipt } from "wagmi/actions";
 import { APP_ENV } from "../config";
 import { BsCheck2Circle, BsXCircle } from "react-icons/bs";
 
+//define type
 interface ConfirmBoxTypes {
   amount: number;
   type: "stake" | "unstake" | "claim" | "";
@@ -369,6 +370,7 @@ export const ConfirmBox = ({
               )}
             </div>
           </div>
+
           <div className="w-full text-center mt-4 text-[#4075FF]  tracking-wider text-sm md:text-lg font-bold">
             {type == "claim" ? (
               <>* No fee applies for {type}</>
