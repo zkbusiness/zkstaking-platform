@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Link as LinkType } from "../types/link";
-import { pages } from "../config";
+import { Link as LinkType } from "@customtypes/link";
+import { pages } from "@config/index";
 import { LiaExternalLinkAltSolid } from "react-icons/lia";
 import { FaDiscord } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
@@ -8,7 +8,8 @@ import { IoIosMenu, IoMdClose } from "react-icons/io";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Button from "./Button";
-import { useScreenWidth } from "../hooks/useScreenWidth";
+import { useScreenWidth } from "@hooks/useScreenWidth";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const NavBar = () => {
   const [visibleMenu, setVisibleMenu] = useState(false);
@@ -82,6 +83,7 @@ const NavBar = () => {
                 height={24}
               />
             </Button>
+            <ConnectButton />
           </div>
         </div>
 

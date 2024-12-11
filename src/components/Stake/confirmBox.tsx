@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "./modal";
-import { useStakeContext } from "../contexts/StakeContext";
+import { useStakeContext } from "../../contexts/StakeContext";
 import numeral from "numeral";
 import { ConfirmButton } from "./confirmButton";
 import { useAccount, useConfig } from "wagmi";
 import { toast } from "react-toastify";
 import { getTransactionReceipt } from "wagmi/actions";
-import { APP_ENV } from "../config";
+import { APP_ENV } from "../../config";
 import { BsCheck2Circle, BsXCircle } from "react-icons/bs";
-import Button from "./Button";
+import Button from "../ui/Button";
 
 //define type
 interface ConfirmBoxTypes {

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ConfirmBox } from "../../components/confirmBox";
-import { useStakeContext } from "../../contexts/StakeContext";
+import { ConfirmBox } from "@components/Stake/confirmBox";
+import { useStakeContext } from "@contexts/StakeContext";
 import numeral from "numeral";
 import { useAccount } from "wagmi";
 import { toast } from "react-toastify";
-import Button from "../../components/Button";
+import Button from "@components/ui/Button";
 
 const StakeLayout: NextPage = () => {
   const {

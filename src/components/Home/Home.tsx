@@ -1,13 +1,11 @@
-"use client";
-
-import { formatNumber } from "../../utils";
-import Button from "../Button";
+import Button from "@components/ui/Button";
 import { CiCircleInfo } from "react-icons/ci";
+import { CountUp } from "@components/ui/CountUp";
 
-const TRANSACTIONS = 400000000;
-const ADDRESSES = 7000000;
+const TRANSACTIONS = 4000000000000;
+const ADDRESSES = 70000000;
 const TX_COST = 0.01;
-const TVL = 1560000000;
+const TVL = 1560000000000;
 
 const Header = () => {
   return (
@@ -34,10 +32,10 @@ const Header = () => {
       <div className="w-full bg-[#0000001e]  backdrop-blur-3xl  rounded-[40px] ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px">
           {[
-            { label: "TRANSACTIONS", value: formatNumber(TRANSACTIONS) },
-            { label: "ADDRESSES", value: formatNumber(ADDRESSES) },
-            { label: "TX COST", value: `$${formatNumber(TX_COST)}` },
-            { label: "TVL", value: `$${formatNumber(TVL)}` },
+            { label: "TRANSACTIONS", value: <CountUp end={TRANSACTIONS} /> },
+            { label: "ADDRESSES", value: <CountUp end={ADDRESSES} /> },
+            { label: "TX COST", value: <CountUp end={TX_COST} prefix="$" /> },
+            { label: "TVL", value: <CountUp end={TVL} prefix="$" /> },
           ].map((item, index) => (
             <div
               key={item.label}

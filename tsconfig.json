@@ -13,7 +13,18 @@
     "resolveJsonModule": true,  
     "isolatedModules": true,  
     "jsx": "preserve", // This setting allows JSX syntax  
-    "incremental": true  
+    "incremental": true  ,
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils/*":["utils/*"],
+      "@config/*":["config/*"],
+      "@contexts/*":["contexts/*"],
+      "@hooks/*":["hooks/*"],
+      "@customtypes/*":["types/*"],
+      "@styles/*":["styles/*"],
+      "@assets/*":["assets/*"],
+    }
   },  
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],  
   "exclude": ["node_modules"]  
