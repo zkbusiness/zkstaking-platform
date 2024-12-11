@@ -9,3 +9,11 @@ export const formatNumber = (value: number): string => {
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
+
+export const timeFix = (value: number) => {
+  if (value / 9 > 1) {
+    return value;
+  } else {
+    return "0" + value;
+  }
+};

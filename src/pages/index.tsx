@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 
 import React from "react";
-import VideoPlayer from "../components/Home/VideoSection";
-import Header from "../components/Home/Home";
-import { Section, SectionProps } from "../components/Home/Section";
-import CardSection from "../components/Home/CardSection";
+import VideoPlayer from "@components/Home/VideoSection";
+import Header from "@components/Home/Home";
+import { Section, SectionProps } from "@components/Home/Section";
+import CardSection from "@components/Home/CardSection";
 
 const sectionsData: SectionProps[] = [
   {

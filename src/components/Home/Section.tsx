@@ -20,7 +20,7 @@ export const Section: React.FC<SectionProps> = ({
   return (
     <section
       className={` px-6 lg:px-12 xl:px-28 py-8 md:py-10 ${
-        reversed && !imageSrc ? "" : "md:flex-row-reverse"
+        reversed ? "" : "md:flex-row-reverse"
       } flex flex-col md:flex-row  justify-between items-center gap-10 z-50`}
     >
       {imageSrc && (
@@ -38,7 +38,7 @@ export const Section: React.FC<SectionProps> = ({
           imageSrc ? "md:max-w-[50%]" : ""
         } `}
       >
-        <h3 className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold">
+        <h3 className="text-[#4075FF]  tracking-wider text-lg md:text-xl font-bold">
           {subtitle}
         </h3>
         <h2

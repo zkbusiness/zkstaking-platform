@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Spinner } from "./spinner";
-import Button from "./Button";
+import { Spinner } from "../ui/spinner";
+import Button from "../ui/Button";
 
 interface ConfirmButtonTypes {
   showMsg: string;
