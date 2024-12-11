@@ -21,6 +21,17 @@ export default {
         xl: "1280px", // Extra large screens
         "2xl": "1500px", // Extra large screens
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"], // Custom Roboto font
+      },
+      fontWeight: {
+        thin: "100",
+        light: "300",
+        normal: "400",
+        medium: "500",
+        bold: "700",
+        black: "900",
+      },
     },
   },
   plugins: [],

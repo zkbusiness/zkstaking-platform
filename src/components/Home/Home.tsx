@@ -1,7 +1,7 @@
 "use client";
 
-import { formatNumber } from "../utils";
-import Button from "./Button";
+import { formatNumber } from "../../utils";
+import Button from "../Button";
 import { CiCircleInfo } from "react-icons/ci";
 
 const TRANSACTIONS = 400000000;
@@ -22,10 +22,12 @@ const Header = () => {
           network, secured by math.
         </h2>
         <div className="flex flex-col sm:flex-row gap-4 my-6">
-          <Button type="primary" className="w-full sm:w-auto">
+          <Button type="primary" className="w-full sm:w-auto" rounded size="lg">
             Start Building
           </Button>
-          <Button className="w-full sm:w-auto">Bridge Now</Button>
+          <Button className="w-full sm:w-auto" rounded size="lg">
+            Bridge Now
+          </Button>
         </div>
       </div>
       {/* <div className="h-12  md:h-96 lg:h-24"></div>  */}

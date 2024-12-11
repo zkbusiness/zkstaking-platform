@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Button from "./Button";
+import Button from "../Button";
 
 interface CardProp {
   title: string;
@@ -23,12 +23,20 @@ const CardSection = () => {
       <Card
         title="Build an App"
         content="Deploy your project on ZKsync Era, the first ZK chain, in a familiar developer experience."
-        ButtonSection={<Button type="primary">Create an App in minutes</Button>}
+        ButtonSection={
+          <Button type="primary" rounded size="lg">
+            Create an App in minutes
+          </Button>
+        }
       />
       <Card
         title="Build your own ZK chain"
         content="Your rules, your sequencing, your token. Tap into network effects of shared users, liquidity and more."
-        ButtonSection={<Button type="primary">Deploy a ZK Chain</Button>}
+        ButtonSection={
+          <Button type="primary" size="lg" rounded>
+            Deploy a ZK Chain
+          </Button>
+        }
       />
     </section>
   );

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Link as LinkType } from "../types/link";
-import { pages } from "../config/links";
+import { pages } from "../config";
 import { LiaExternalLinkAltSolid } from "react-icons/lia";
 import { FaDiscord } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
@@ -30,13 +30,15 @@ const NavBar = () => {
           visibleMenu ? "bg-foreground" : ""
         } `}
       >
-        <Image
-          src="/logo.webp"
-          alt=""
-          width={500}
-          height={500}
-          className="w-[220px] h-auto"
-        />
+        <Link href={"/"}>
+          <Image
+            src="/images/logo.webp"
+            alt=""
+            width={500}
+            height={500}
+            className="w-[220px] h-auto"
+          />
+        </Link>
         <div className=" gap-10 lg:flex hidden">
           <div className="flex gap-10 text-md ">
             {pages.map((link: LinkType, id) => (
@@ -58,22 +60,27 @@ const NavBar = () => {
             ))}
           </div>
           <div className=" flex items-center gap-2">
-            <Button type="dark">
+            <Button type="dark" size="sm" rounded>
               <FaDiscord className="  text-2xl" />
             </Button>
-            <Button type="dark">
+            <Button type="dark" size="sm" rounded>
               <BsTwitterX className="  text-2xl" />
             </Button>
-            <Button type="dark" className="  text-2xl">
+            <Button type="dark" className="  text-2xl" size="sm" rounded>
               <Image
-                src="/lens-protocol.svg"
+                src="/images/lens-protocol.svg"
                 alt="lens"
                 width={24}
                 height={24}
               />
             </Button>
-            <Button type="dark" className="  text-2xl">
-              <Image src="/mirror.svg" alt="mirror" width={24} height={24} />
+            <Button type="dark" className="  text-2xl " size="sm" rounded>
+              <Image
+                src="/images/mirror.svg"
+                alt="mirror"
+                width={24}
+                height={24}
+              />
             </Button>
           </div>
         </div>
@@ -82,6 +89,8 @@ const NavBar = () => {
           onClick={() => setVisibleMenu((prev) => !prev)}
           type="dark"
           className="lg:hidden block"
+          size="sm"
+          rounded
         >
           {visibleMenu ? (
             <IoMdClose className="  text-2xl" />
@@ -99,7 +108,7 @@ const NavBar = () => {
               className="flex  items-center"
               target={link.target}
             >
-              <Button type="dark" className="w-full">
+              <Button type="dark" className="w-full" rounded size="lg">
                 {link.name}
 
                 {link?.target === "blank" && (
@@ -112,22 +121,27 @@ const NavBar = () => {
             </Link>
           ))}
           <div className=" flex items-center gap-2 justify-center">
-            <Button type="dark">
+            <Button type="dark" size="sm" rounded>
               <FaDiscord />
             </Button>
-            <Button type="dark">
+            <Button type="dark" size="sm" rounded>
               <BsTwitterX />
             </Button>
-            <Button type="dark">
+            <Button type="dark" size="sm" rounded>
               <Image
-                src="/lens-protocol.svg"
+                src="/images/lens-protocol.svg"
                 alt="lens"
                 width={20}
                 height={20}
               />
             </Button>
-            <Button type="dark">
-              <Image src="/mirror.svg" alt="mirror" width={20} height={20} />
+            <Button type="dark" size="sm" rounded>
+              <Image
+                src="/images/mirror.svg"
+                alt="mirror"
+                width={20}
+                height={20}
+              />
             </Button>
           </div>
         </div>
