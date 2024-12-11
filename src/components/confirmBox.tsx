@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { getTransactionReceipt } from "wagmi/actions";
 import { APP_ENV } from "../config";
 import { BsCheck2Circle, BsXCircle } from "react-icons/bs";
+import Button from "./Button";
 
 //define type
 interface ConfirmBoxTypes {
@@ -229,9 +230,9 @@ export const ConfirmBox = ({
               </div>
             </div>
             <div className="confirm-modal-footer">
-              <button className={`btn btn-primary px-6`} onClick={done}>
+              <Button rounded type="primary" onClick={done}>
                 Done
-              </button>
+              </Button>
             </div>
           </div>
         </>
@@ -343,7 +344,7 @@ export const ConfirmBox = ({
               )}
               {type == "claim" && (
                 <>
-                  <div className="">
+                  <div className="mb-28">
                     <p className="h-10 flex items-center font-thin   tracking-wider">
                       Claim Amount :
                       <span className="" style={{ color: "yellow" }}>
