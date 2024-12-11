@@ -54,7 +54,7 @@ const footerColumns: FooterColumn[] = [
 export default function Footer() {
   return (
     <footer className="bg-black text-white px-6 md:px-28 pt-32 pb-6">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-14 md:gap-56 lg:gap-14">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-32 md:gap-56 lg:gap-24 xl:gap-56">
         {footerColumns.map((column) => (
           <div key={column.title} className="space-y-4">
             <h3 className="text-[#4075FF] font-semibold text-basic tracking-wider">
@@ -79,7 +79,7 @@ export default function Footer() {
       <div className="mt-32">
         <Link href="/" className="inline-block">
           <Image
-            src="/logo.webp"
+            src="/images/logo.webp"
             alt=""
             width={500}
             height={500}

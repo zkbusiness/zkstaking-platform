@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./fonts.css";
+
 :root {
   --background: #ffffff1c;
   --foreground: #000000;
@@ -10,6 +12,7 @@
 body {
   background-color: var(--foreground);
   color: white;
+  font-family: "Roboto", sans-serif;
 }
 
 section {
@@ -35,5 +38,16 @@ section {
   .video-wrapper::after {
     right: 0;
     background-image: linear-gradient(to right, transparent, black);
+  }
+}
+
+
+@layer utilities {
+  input[type="number"]::-webkit-inner-spin-button, 
+  input[type="number"]::-webkit-outer-spin-button {
+    @apply appearance-none;
+  }
+  input[type="number"] {
+    @apply [moz-appearance:textfield];
   }
 }
