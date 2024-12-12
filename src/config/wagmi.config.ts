@@ -4,8 +4,8 @@ import { APP_ENV } from "./env.config";
 import { http } from "viem";
 
 export const config = getDefaultConfig({
-  appName: "CODE STAKING",
-  appIcon: "https://staking.code0x.io/code.png" ?? undefined,
+  appName: "ZK STAKE",
+  appIcon: "",
 
   projectId: APP_ENV.PROJECT_ID ? APP_ENV.PROJECT_ID : "YOUR_PROJECT_ID",
   chains: [

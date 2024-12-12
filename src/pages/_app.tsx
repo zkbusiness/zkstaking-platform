@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>ZK Staking</title>
         <meta
-          content="The Secured staking platform for $CODE"
+          content="The Secured staking platform for ZK"
           name="description"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
