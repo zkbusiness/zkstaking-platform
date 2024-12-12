@@ -8,7 +8,7 @@ interface CountUpProps extends React.HTMLAttributes<HTMLSpanElement> {
   delay?: number;
   prefix?: string;
   suffix?: string;
-  formatter?: (value: number) => string;
+  format?: string;
 }
 
 function calculateDuration(start: number, end: number): number {
@@ -27,7 +27,7 @@ export function CountUp({
   delay = 0,
   prefix = "",
   suffix = "",
-  formatter = formatNumber,
+  format = "0.[00]a",
   className,
   ...props
 }: CountUpProps) {
@@ -73,7 +73,7 @@ export function CountUp({
   return (
     <span className={cn("inline-flex items-center", className)} {...props}>
       {prefix && <span className="mr-1">{prefix}</span>}
-      <span>{formatter(count)}</span>
+      <span>{formatNumber(count, format)}</span>
       {suffix && <span className="ml-1">{suffix}</span>}
     </span>
   );

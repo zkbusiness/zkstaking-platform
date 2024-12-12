@@ -230,7 +230,7 @@ export const ConfirmBox = ({
               </div>
             </div>
             <div className="confirm-modal-footer">
-              <Button rounded type="primary" onClick={done}>
+              <Button shadow="md" rounded type="primary" onClick={done}>
                 Done
               </Button>
             </div>
@@ -372,7 +372,7 @@ export const ConfirmBox = ({
             </div>
           </div>
 
-          <div className="w-full text-center mt-4 text-[#4075FF]  tracking-wider text-sm md:text-lg font-bold">
+          <div className="w-full text-center mt-4 text-[#32ffff]  tracking-wider text-sm md:text-lg font-bold">
             {type == "claim" ? (
               <>* No fee applies for {type}</>
             ) : (

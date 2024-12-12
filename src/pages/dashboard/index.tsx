@@ -11,14 +11,13 @@ import {
 
 import { useAccount, useConfig } from "wagmi";
 import { useStakeContext } from "@contexts/StakeContext";
-import numeral from "numeral";
 import { APP_ENV } from "@config/index";
 import { NextPage } from "next";
 import { PieChartTotalStaked } from "@components/Dashboard/PieChartTotalStaked";
-import { Spinner } from "@components/ui/spinner";
 import { useScreenWidth } from "@hooks/useScreenWidth";
 import Button from "@components/ui/Button";
 import { CountUp } from "@components/ui/CountUp";
+import CoinSpinner from "@components/ui/CoinSpinner";
 
 const Dashboard: NextPage = () => {
   const {
@@ -182,9 +181,11 @@ const Dashboard: NextPage = () => {
                   </div>
                 </div>
               ) : (
-                <div className=" flex  h-full w-full justify-center items-center">
-                  <Spinner variant="ring" size="lg" color="#10b981" />
-                </div>
+                <CoinSpinner
+                  isSilver
+                  size="xl"
+                  className="h-full w-full flex items-center justify-center"
+                />
               )}
               {isConnected
                 ? pieLoadTime && (
@@ -231,31 +232,31 @@ const Dashboard: NextPage = () => {
             </div>
             <br className=" block md:hidden" />
             <div className="flex w-full md:w-96 flex-col gap-14 px-4 md:px-0">
-              <Button size="xs" ghost type="primary" className="w-full ">
+              <Button size="xs" type="dark" className="w-full ">
                 <span className="w-full">APY</span>
                 <span className=" w-full">
                   <CountUp end={8} suffix="%" />
                 </span>
               </Button>
-              <Button size="xs" ghost type="primary" className="w-full ">
+              <Button size="xs" type="dark" className="w-full ">
                 <span className="w-full">Total Staked</span>
                 <span className=" w-full">
                   <CountUp end={totalStaked} />
                 </span>
               </Button>
-              <Button size="xs" ghost type="primary" className="w-full ">
+              <Button size="xs" type="dark" className="w-full ">
                 <span className="w-full">Stake Fee</span>
                 <span className=" w-full">
                   <CountUp end={APP_ENV.STAKE_FEE} suffix="%" />
                 </span>
               </Button>
-              <Button size="xs" ghost type="primary" className="w-full ">
+              <Button size="xs" type="dark" className="w-full ">
                 <span className="w-full">Unstake Fee</span>
                 <span className=" w-full">
                   <CountUp end={APP_ENV.STAKE_FEE} suffix="%" />
                 </span>
               </Button>
-              <Button size="xs" ghost type="primary" className="w-full ">
+              <Button size="xs" type="dark" className="w-full ">
                 <span className="w-full">Max Stakable</span>
                 <span className=" w-full">
                   <CountUp end={maxTokensStakable} />
@@ -263,13 +264,13 @@ const Dashboard: NextPage = () => {
               </Button>
               {address && isConnected ? (
                 <>
-                  <Button size="xs" ghost type="primary" className="w-full ">
+                  <Button size="xs" type="dark" className="w-full ">
                     <span className="w-full">My Staking</span>
                     <span className=" w-full">
                       <CountUp end={stakeShare} />
                     </span>
                   </Button>
-                  <Button size="xs" ghost type="primary" className="w-full ">
+                  <Button size="xs" type="dark" className="w-full ">
                     <span className="w-full">Reward</span>
                     <span className=" w-full">
                       <CountUp end={rewards} />
@@ -289,8 +290,7 @@ const Dashboard: NextPage = () => {
               <>
                 <div className="mt-16">
                   <h5 className="primary-color">
-                    Today Reward Chart :
-                    <span style={{ color: "yellow" }}>$CODE</span> {todayReward}
+                    Today Reward Chart :&nbsp;{todayReward} &nbsp; ZK
                   </h5>
                 </div>
 

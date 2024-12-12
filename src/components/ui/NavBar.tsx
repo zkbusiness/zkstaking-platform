@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Link as LinkType } from "@customtypes/link";
 import { pages } from "@config/index";
 import { LiaExternalLinkAltSolid } from "react-icons/lia";
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaTelegram, FaTelegramPlane } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import Image from "next/image";
@@ -25,23 +25,28 @@ const NavBar = () => {
   }, [isNarrowScreen]);
 
   return (
-    <div>
+    <div
+      className=" relative"
+      style={{
+        zIndex: "10000",
+      }}
+    >
       <div
-        className={`flex h-[86px]  px-4 md:px-8 items-center justify-between text-white ${
+        className={`flex h-[86px]  px-4 md:px-8 w-full items-center justify-between text-white ${
           visibleMenu ? "bg-foreground" : ""
         } `}
       >
         <Link href={"/"}>
           <Image
-            src="/images/logo.webp"
+            src="/images/logo.svg"
             alt=""
             width={500}
             height={500}
             className="w-[220px] h-auto"
           />
         </Link>
-        <div className=" gap-10 lg:flex hidden">
-          <div className="flex gap-10 text-md ">
+        <div className=" gap-4 xl:gap-10  lg:flex hidden">
+          <div className="flex gap-4 xl:gap-10 text-md ">
             {pages.map((link: LinkType, id) => (
               <Link
                 key={id}
@@ -62,27 +67,15 @@ const NavBar = () => {
           </div>
           <div className=" flex items-center gap-2">
             <Button type="dark" size="sm" rounded>
+              <FaTelegramPlane className="  text-2xl" />
+            </Button>
+            <Button type="dark" size="sm" rounded>
               <FaDiscord className="  text-2xl" />
             </Button>
             <Button type="dark" size="sm" rounded>
               <BsTwitterX className="  text-2xl" />
             </Button>
-            <Button type="dark" className="  text-2xl" size="sm" rounded>
-              <Image
-                src="/images/lens-protocol.svg"
-                alt="lens"
-                width={24}
-                height={24}
-              />
-            </Button>
-            <Button type="dark" className="  text-2xl " size="sm" rounded>
-              <Image
-                src="/images/mirror.svg"
-                alt="mirror"
-                width={24}
-                height={24}
-              />
-            </Button>
+
             <ConnectButton />
           </div>
         </div>
@@ -102,7 +95,7 @@ const NavBar = () => {
         </Button>
       </div>
       {visibleMenu && (
-        <div className="flex flex-col gap-4 text-md   p-4 bg-black h-screen">
+        <div className="flex flex-col gap-4 text-md w-screen   p-4 bg-black h-screen">
           {pages.map((link: LinkType, id) => (
             <Link
               key={id}
@@ -124,27 +117,17 @@ const NavBar = () => {
           ))}
           <div className=" flex items-center gap-2 justify-center">
             <Button type="dark" size="sm" rounded>
+              <FaTelegramPlane />
+            </Button>
+            <Button type="dark" size="sm" rounded>
               <FaDiscord />
             </Button>
             <Button type="dark" size="sm" rounded>
               <BsTwitterX />
             </Button>
-            <Button type="dark" size="sm" rounded>
-              <Image
-                src="/images/lens-protocol.svg"
-                alt="lens"
-                width={20}
-                height={20}
-              />
-            </Button>
-            <Button type="dark" size="sm" rounded>
-              <Image
-                src="/images/mirror.svg"
-                alt="mirror"
-                width={20}
-                height={20}
-              />
-            </Button>
+          </div>
+          <div className=" w-fit mx-auto">
+            <ConnectButton />
           </div>
         </div>
       )}
