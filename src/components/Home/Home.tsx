@@ -41,7 +41,7 @@ const Header = () => {
               key={item.label}
               className={`
                 bg-background p-6 sm:p-8 md:p-10 lg:p-12
-                px-12 sm:px-16 md:px-20 lg:px-5  min-[1600px]:px-24
+                  flex items-center  justify-center
                 text-center md:text-start     backdrop-blur-2xl       
                 ${
                   index === 0
@@ -53,11 +53,13 @@ const Header = () => {
                 ${index === 3 ? " lg:rounded-tr-[40px]" : ""}
               `}
             >
-              <div className="text-lg font-semibold mb-2 flex items-center justify-center md:justify-start">
-                {item.label}&nbsp;
-                <CiCircleInfo className="opacity-70" />
+              <div className=" w-fit">
+                <div className="text-lg font-semibold mb-2 flex items-center justify-center md:justify-start">
+                  {item.label}&nbsp;
+                  <CiCircleInfo className="opacity-70" />
+                </div>
+                <div className="text-5xl font-semibold">{item.value}</div>
               </div>
-              <div className="text-5xl font-semibold">{item.value}</div>
             </div>
           ))}
         </div>

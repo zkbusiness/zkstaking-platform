@@ -21,7 +21,7 @@ const client = new QueryClient();
 function MyApp({ Component, pageProps }: AppProps) {
   const myTheme = merge(darkTheme(), {
     colors: {
-      accentColor: "#1c8dc2db",
+      accentColor: "#ffffff16",
       accentColorForeground: "white",
       connectButtonBackground: "#ffffff16",
       connectButtonText: "",
@@ -54,8 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </RainbowKitProvider>
         </QueryClientProvider>
       </WagmiProvider>
-
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="bottom-right" className="z-[100000]" />
     </div>
   );
 }
