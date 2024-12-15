@@ -12,11 +12,11 @@ import {
   useWriteContract,
 } from "wagmi";
 
-import CODE_TOKEN_ABI from "../abi/CodeToken.json";
-import STAKE_CONTRACT_ABI from "../abi/StakeCodeToken.json";
+import ZK_TOKEN_ABI from "../abi/ZkTokenABI.json";
+import STAKE_CONTRACT_ABI from "../abi/StakeABI.json";
 import {
   APP_ENV,
-  getCodeTokenAddress,
+  getZKTokenAddress,
   getStakingContractAddress,
 } from "../config";
 
@@ -28,7 +28,7 @@ const publicClient = createPublicClient({
 export type StakeInfoType = {
   maxTokensStakable: number;
   hasStake: boolean;
-  codePrice: number;
+  zkPrice: number;
   totalStakedOfAddress: number;
   balance: number;
   totalStaked: number;
@@ -65,7 +65,7 @@ export type StakeContextType = {
 const defaultValues: StakeInfoType = {
   maxTokensStakable: 0,
   hasStake: false,
-  codePrice: 0,
+  zkPrice: 0,
   totalStakedOfAddress: 0,
   balance: 0,
   rewards: 0,
@@ -93,12 +93,12 @@ const StakeContext = createContext<StakeContextType>({
   calcRewards: () => {
     return 0;
   },
-  approve: () => {},
-  stake: () => {},
-  unstake: () => {},
-  claim: () => {},
-  setTxStatus: () => {},
-  refresh: () => {},
+  approve: () => { },
+  stake: () => { },
+  unstake: () => { },
+  claim: () => { },
+  setTxStatus: () => { },
+  refresh: () => { },
 });
 
 export const useStakeContext = (): StakeContextType => useContext(StakeContext);
@@ -112,7 +112,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
   const [txHash, setTxHash] = useState<`0x${string}` | undefined>();
   const [currentTx, setCurrentTx] = useState("");
   const [txStatus, setTxStatus] = useState("");
-  const token = getCodeTokenAddress(chainId);
+  const token = getZKTokenAddress(chainId);
   const contract = getStakingContractAddress(chainId);
 
   const balance: UseBalanceReturnType = useBalance({
@@ -129,10 +129,10 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
   const approve = (amount: number) => {
     setCurrentTx("approve");
     setTxStatus("");
-    const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.CODE_DECIMAL);
+    const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
     const largeNumberString = largeNumber.toString();
     writeContract({
-      abi: CODE_TOKEN_ABI as any,
+      abi: ZK_TOKEN_ABI as any,
       address: token,
       functionName: "approve",
       args: [contract, largeNumberString],
@@ -143,7 +143,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
   const stake = (amount: number) => {
     setCurrentTx("stake");
     setTxStatus("");
-    const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.CODE_DECIMAL);
+    const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
     const largeNumberString = largeNumber.toString();
     writeContract({
       abi: STAKE_CONTRACT_ABI as any,
@@ -158,7 +158,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
   const unstake = (amount: number) => {
     setCurrentTx("unstake");
     setTxStatus("");
-    const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.CODE_DECIMAL);
+    const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
     const largeNumberString = largeNumber.toString();
     writeContract({
       abi: STAKE_CONTRACT_ABI as any,
@@ -203,7 +203,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
           args: [address || "0x0"],
         }),
         publicClient.readContract({
-          abi: CODE_TOKEN_ABI as any,
+          abi: ZK_TOKEN_ABI as any,
           address: token,
           functionName: "allowance",
           args: [address || "0x0", contract],
@@ -246,12 +246,12 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
       const unclaimedAmount = Number(stakeInfo[1]);
       const lastClaimedTime = Number(stakeInfo[2]);
       const rate = Number(0.08);
-      const decimal = Number(10 ** APP_ENV.CODE_DECIMAL);
+      const decimal = Number(10 ** APP_ENV.ZK_DECIMAL);
 
       return (
         (unclaimedAmount +
           (stakedAmount * rate * (now - lastClaimedTime)) /
-            Number(365 * 24 * 60 * 60)) /
+          Number(365 * 24 * 60 * 60)) /
         decimal
       );
     } else {
@@ -284,14 +284,14 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
   useEffect(() => {
     setStakeInfoValues((prevState) => ({
       ...prevState,
-      totalStaked: Number(totalStaked) / 10 ** APP_ENV.CODE_DECIMAL,
+      totalStaked: Number(totalStaked) / 10 ** APP_ENV.ZK_DECIMAL,
     }));
   }, [totalStaked]);
   useEffect(() => {
     setStakeInfoValues((prevState) => ({
       ...prevState,
       totalStakedOfAddress:
-        Number(totalStakedOfAddress) / 10 ** APP_ENV.CODE_DECIMAL,
+        Number(totalStakedOfAddress) / 10 ** APP_ENV.ZK_DECIMAL,
     }));
   }, [totalStakedOfAddress]);
 
@@ -301,7 +301,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
       if (data) {
         const stakedAmount = Number(data[0]);
         const rate = Number(0.08);
-        const decimal = Number(10 ** APP_ENV.CODE_DECIMAL);
+        const decimal = Number(10 ** APP_ENV.ZK_DECIMAL);
         const rewards = calcRewards();
         setStakeInfoValues((prevState) => ({
           ...prevState,
@@ -346,16 +346,16 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     (async () => {
       try {
         const data = await fetch(
-          `https://api.geckoterminal.com/api/v2/networks/eth/tokens/${process.env.NEXT_PUBLIC_CODE_ADDRESS_MAINNET}`
+          `https://api.geckoterminal.com/api/v2/networks/eth/tokens/${process.env.NEXT_PUBLIC_ZK_ADDRESS_MAINNET}`
         );
         const priceInfo = await data.json();
         const price = priceInfo.data.attributes.price_usd;
 
         setStakeInfoValues((prev) => ({
           ...prev,
-          codePrice: price,
+          zkPrice: price,
         }));
-      } catch (e) {}
+      } catch (e) { }
     })();
   }, []);
 

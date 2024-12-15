@@ -87,7 +87,7 @@ const Dashboard: NextPage = () => {
       }
     }, 3000);
   }, []);
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   // available staking
   const availStaking = [
@@ -139,7 +139,7 @@ const Dashboard: NextPage = () => {
         <>
           <div className="">
             <h3 className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold">
-              My $CODE : {balance}
+              My $ZK : {balance}
             </h3>
           </div>
 
@@ -189,46 +189,46 @@ const Dashboard: NextPage = () => {
               )}
               {isConnected
                 ? pieLoadTime && (
-                    <div className="flex mt-4">
-                      <div className="m-auto">
-                        <div className="racking-wider text-lg md:text-xl font-bold">
-                          Your Percent
-                        </div>
-                        <div className="flex text-lg md:text-xl items-center gap-2">
-                          <div
-                            style={{
-                              width: "10px",
-                              height: "10px",
-                              background: "#00C49F",
-                              borderRadius: "100%",
-                            }}
-                          ></div>
-                          <div className=""> total staked amount</div>
-                        </div>
-                        <div className="flex text-lg md:text-xl items-center gap-2">
-                          <div
-                            style={{
-                              width: "10px",
-                              height: "10px",
-                              background: "#0088FE",
-                              borderRadius: "100%",
-                            }}
-                          ></div>
-                          <div className=""> your staked amount</div>
-                        </div>
-                        <PieChartTotalStaked
-                          COLORS={COLORS2}
-                          renderCustomizedLabel={renderCustomizedLabel}
-                          data={yourPercent}
-                        />
+                  <div className="flex mt-4">
+                    <div className="m-auto">
+                      <div className="racking-wider text-lg md:text-xl font-bold">
+                        Your Percent
                       </div>
+                      <div className="flex text-lg md:text-xl items-center gap-2">
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            background: "#00C49F",
+                            borderRadius: "100%",
+                          }}
+                        ></div>
+                        <div className=""> total staked amount</div>
+                      </div>
+                      <div className="flex text-lg md:text-xl items-center gap-2">
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            background: "#0088FE",
+                            borderRadius: "100%",
+                          }}
+                        ></div>
+                        <div className=""> your staked amount</div>
+                      </div>
+                      <PieChartTotalStaked
+                        COLORS={COLORS2}
+                        renderCustomizedLabel={renderCustomizedLabel}
+                        data={yourPercent}
+                      />
                     </div>
-                  )
+                  </div>
+                )
                 : pieLoadTime && (
-                    <div className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold mt-24">
-                      Connect wallet to see information
-                    </div>
-                  )}
+                  <div className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold mt-24">
+                    Connect wallet to see information
+                  </div>
+                )}
             </div>
             <br className=" block md:hidden" />
             <div className="flex w-full md:w-96 flex-col gap-14 px-4 md:px-0">

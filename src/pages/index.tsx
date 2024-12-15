@@ -8,15 +8,15 @@ import CardSection from "@components/Home/CardSection";
 
 const sectionsData: SectionProps[] = [
   {
-    subtitle: "ZK CHAINS",
-    title: "A network of ZK chains...",
+    subtitle: "ZK SYNC STAKING",
+    title: "A ZkSyncStaking platform...",
     description:
-      "ZK chains are high performance, verifiable, modular rollups and validiums powered by ZKsync. United in an elastic network, ZK chains can be added or expanded to handle increased transaction volume without affecting costs or hardware requirements for verification.",
+      "ZK Sync Staking focuses on security with stringent measures in place to keep user funds safe. On ZkSyncStaking, the competitive nature of staking rewards, along with very low fees, creates a high appeal for many investors.",
     imageSrc: "/images/zk-stack.webp",
     imageAlt: "ZK chains network illustration",
   },
   {
-    subtitle: "NATIVE INTEROPERABILITY",
+    subtitle: "INCOME BY APR",
     title: "...sharing users and liquidity...",
     description:
       "ZK chains provide native, frictionless interoperability presented in a consistent and easy-to-use interface. This enables trustless communication and asset transfers between chains leveraging the full range of users and liquidity across the entire ZK chain ecosystem. Unlike traditional, centralized solutions, this protocol relies solely on cryptography for security.",
