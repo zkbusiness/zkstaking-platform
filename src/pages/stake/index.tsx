@@ -14,7 +14,7 @@ import CoinSpinner from "@components/ui/CoinSpinner";
 
 const StakeLayout: NextPage = () => {
   const {
-    stakeInfo: { rewards, codePrice, balance, hasStake, stakeShare },
+    stakeInfo: { rewards, zkPrice, balance, hasStake, stakeShare },
   } = useStakeContext();
 
   const { isConnected } = useAccount();
@@ -221,7 +221,7 @@ const StakeLayout: NextPage = () => {
                               height={50}
                               className="relative h-[40px] w-[40px] top-0 left-0 z-10 m-2 rounded-sm"
                               src="/images/favicon.ico"
-                              alt="code-token"
+                              alt="zk-token"
                             />
                             <input
                               // disabled
@@ -257,10 +257,10 @@ const StakeLayout: NextPage = () => {
                         </div>
                       </div>
                       <div className="mb-2 flex">
-                        {numeral(amount * codePrice).format("$0,0.00000") !==
-                        "$NaN"
+                        {numeral(amount * zkPrice).format("$0,0.00000") !==
+                          "$NaN"
                           ? "~" +
-                            numeral(amount * codePrice).format("$0,0.00000")
+                          numeral(amount * zkPrice).format("$0,0.00000")
                           : "$ 0"}
                       </div>
                     </>
@@ -328,9 +328,9 @@ const StakeLayout: NextPage = () => {
                     </span>
                     <div className="">
                       <div className="">
-                        {numeral(rewards * codePrice).format("$0,0.00000") !==
-                        "$NaN"
-                          ? numeral(rewards * codePrice).format("$0,0.00000")
+                        {numeral(rewards * zkPrice).format("$0,0.00000") !==
+                          "$NaN"
+                          ? numeral(rewards * zkPrice).format("$0,0.00000")
                           : "$ 0"}
                       </div>
                     </div>

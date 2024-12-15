@@ -27,7 +27,7 @@ export const ConfirmBox = ({
   handleOpenModal,
 }: ConfirmBoxTypes) => {
   const {
-    stakeInfo: { rewards, codePrice, balance, hasStake, totalStaked },
+    stakeInfo: { rewards, zkPrice, balance, hasStake, totalStaked },
     allowance,
     currentTx,
     txStatus,
@@ -68,7 +68,7 @@ export const ConfirmBox = ({
   };
   const handleStaking = async () => {
     if (!verifyStep()) return;
-    if (allowance < amount * 10 ** APP_ENV.CODE_DECIMAL) {
+    if (allowance < amount * 10 ** APP_ENV.ZK_DECIMAL) {
       approve(amount);
     } else {
       stake(amount);
@@ -211,9 +211,8 @@ export const ConfirmBox = ({
                 </div>
                 <div className="">
                   <div
-                    className={`${
-                      step == "success" ? "" : ""
-                    } transaction-text`}
+                    className={`${step == "success" ? "" : ""
+                      } transaction-text`}
                   >
                     {step == "success" ? (
                       <>
@@ -249,7 +248,7 @@ export const ConfirmBox = ({
                 <>
                   <div className="">
                     <p className="h-10 flex items-center font-thin   tracking-wider">
-                      $CODE Amount : {numeral(amount).format("0,0.00000")}
+                      $ZK Amount : {numeral(amount).format("0,0.00000")}
                     </p>
                     <p className="h-10 flex items-center font-thin   tracking-wider">
                       Fee {APP_ENV.STAKE_FEE}% :
@@ -257,20 +256,20 @@ export const ConfirmBox = ({
                         (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
                       ).format("0,0.00000") !== "$NaN"
                         ? numeral(
-                            (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
-                          ).format("0,0.00000")
+                          (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
+                        ).format("0,0.00000")
                         : 0}
                     </p>
                     <p className="h-10 flex items-center font-thin   tracking-wider">
                       Fee USD :
                       {numeral(
-                        (amount / 1000) * (APP_ENV.STAKE_FEE * 10) * codePrice
+                        (amount / 1000) * (APP_ENV.STAKE_FEE * 10) * zkPrice
                       ).format("$0,0.00000") !== "$NaN"
                         ? numeral(
-                            (amount / 1000) *
-                              (APP_ENV.STAKE_FEE * 10) *
-                              codePrice
-                          ).format("$0,0.00000")
+                          (amount / 1000) *
+                          (APP_ENV.STAKE_FEE * 10) *
+                          zkPrice
+                        ).format("$0,0.00000")
                         : 0}
                     </p>
                     <p className="h-10 flex items-center font-thin   tracking-wider">
@@ -279,12 +278,12 @@ export const ConfirmBox = ({
                     </p>
                     <p className="h-10 flex items-center font-thin   tracking-wider">
                       8% APY USD :
-                      {numeral((amount / 1000) * 80 * codePrice).format(
+                      {numeral((amount / 1000) * 80 * zkPrice).format(
                         "$0,0.00000"
                       ) !== "$NaN"
-                        ? numeral((amount / 1000) * 80 * codePrice).format(
-                            "$0,0.00000"
-                          )
+                        ? numeral((amount / 1000) * 80 * zkPrice).format(
+                          "$0,0.00000"
+                        )
                         : 0}
                     </p>
                   </div>
@@ -300,7 +299,7 @@ export const ConfirmBox = ({
                 <>
                   <div className="">
                     <p className="h-10 flex items-center font-thin   tracking-wider">
-                      $CODE Amount : {numeral(amount).format("0,0.00000")}
+                      $ZK Amount : {numeral(amount).format("0,0.00000")}
                     </p>
                     <p style={{ color: "yellow" }}>
                       + (reward) :
@@ -316,20 +315,20 @@ export const ConfirmBox = ({
                         (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
                       ).format("0,0.00000") !== "$NaN"
                         ? numeral(
-                            (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
-                          ).format("0,0.00000")
+                          (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
+                        ).format("0,0.00000")
                         : 0}
                     </p>
                     <p className="h-10 flex items-center font-thin   tracking-wider">
                       Fee USD :
                       {numeral(
-                        (amount / 1000) * (APP_ENV.STAKE_FEE * 10) * codePrice
+                        (amount / 1000) * (APP_ENV.STAKE_FEE * 10) * zkPrice
                       ).format("$0,0.00000") !== "$NaN"
                         ? numeral(
-                            (amount / 1000) *
-                              (APP_ENV.STAKE_FEE * 10) *
-                              codePrice
-                          ).format("$0,0.00000")
+                          (amount / 1000) *
+                          (APP_ENV.STAKE_FEE * 10) *
+                          zkPrice
+                        ).format("$0,0.00000")
                         : 0}
                     </p>
                   </div>
@@ -355,9 +354,9 @@ export const ConfirmBox = ({
                     </p>
                     <p className="h-10 flex items-center font-thin   tracking-wider">
                       USD Price :
-                      {numeral(rewards * codePrice).format("$0,0.00000") !==
-                      "$NaN"
-                        ? numeral(rewards * codePrice).format("$0,0.00000")
+                      {numeral(rewards * zkPrice).format("$0,0.00000") !==
+                        "$NaN"
+                        ? numeral(rewards * zkPrice).format("$0,0.00000")
                         : "smaller than 0.00001 "}
                     </p>
                   </div>
