@@ -43,6 +43,7 @@ const VideoPlayer = ({ className = "" }: { className?: string }) => {
         Your browser does not support the video tag.
       </video>
       <Image
+        draggable="false"
         src={"/images/hero-mobile.webp"}
         alt="hero-mobile"
         className=" block md:hidden m-36 "

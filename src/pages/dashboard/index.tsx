@@ -139,11 +139,11 @@ const Dashboard: NextPage = () => {
 
                     <div className="flex flex-col md:flex-row  mt-6  justify-between justify-self-center max-w-[940px] w-full ">
                         <div className="col-sm-12 col-md-6 w-full md:w-fit ">
-                            {/* <CoinSpinner
+                            <CoinSpinner
                                 isSilver
                                 size="xl"
                                 className="h-full w-full flex items-center justify-center"
-                            /> */}
+                            />
                             {isConnected
                                 ? pieLoadTime && (
                                     <div className="flex mt-4">

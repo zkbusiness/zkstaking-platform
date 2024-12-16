@@ -23,10 +23,12 @@ export const Section: React.FC<SectionProps> = ({
                 } flex flex-col md:flex-row  justify-between items-center gap-10 z-50`}
         >
             {imageSrc && (
-                <div className="w-full max-w-[400px]  aspect-square relative">
+                <div className="w-full max-w-[400px] flex aspect-square relative">
                     <Image
-                        src={imageSrc || ""}
-                        alt={imageAlt || ""}
+                        draggable="false"
+                        className="min-h-[300px] m-auto rounded-md"
+                        src={imageSrc || "image"}
+                        alt={imageAlt || "image"}
                         width={400}
                         height={400}
                     />

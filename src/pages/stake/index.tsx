@@ -217,6 +217,7 @@ const StakeLayout: NextPage = () => {
                                                 <div className=" bg-background flex flex-col  sm:flex-row items-center justify-between rounded-md px-4 py-3 gap-4 ">
                                                     <div className="flex  relative h-full w-full">
                                                         <Image
+                                                            draggable="false"
                                                             width={50}
                                                             height={50}
                                                             className="relative h-[40px] w-[40px] top-0 left-0 z-10 m-2 rounded-sm"

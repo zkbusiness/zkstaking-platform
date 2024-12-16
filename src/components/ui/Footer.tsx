@@ -35,18 +35,8 @@ const footerColumns: FooterColumn[] = [
     links: [
       { label: "Discord", href: "#" },
       { label: "X / Twitter", href: "#" },
+      { label: "Telegram", href: "#" },
       { label: "Hey", href: "#" },
-      { label: "Mirror", href: "#" },
-    ],
-  },
-  {
-    title: "GENERAL",
-    links: [
-      { label: "Contact Us", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Cookie Policy", href: "#" },
-      { label: "API License", href: "#" },
     ],
   },
 ];
@@ -85,7 +75,8 @@ export default function Footer() {
       <div className="mt-32">
         <Link href="/" className="inline-block">
           <Image
-            src="/images/logo.svg"
+            draggable="false"
+            src="/images/logo.png"
             alt=""
             width={500}
             height={500}
