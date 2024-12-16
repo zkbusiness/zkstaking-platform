@@ -5,12 +5,11 @@ import { useStakeContext } from "@contexts/StakeContext";
 
 const TX_COST = 0.1;
 
-const Header = () => {
+const Home = () => {
 
     const {
         stakeInfo: { totalTx, totalStaked, totalStaker },
     } = useStakeContext();
-
 
     return (
         <section className="min-h-screen md:min-h-96  md:h-[700px] lg:h-[760px] xl:h-[920px] translate-y-60  pt-16 sm:pt-20 md:pt-24 lg:pt-32 pb-36  md:pb-20 lg:pb-12 flex flex-col justify-end w-full ">
@@ -32,7 +31,6 @@ const Header = () => {
                     </Button>
                 </div>
             </div>
-            {/* <div className="h-12  md:h-96 lg:h-24"></div>  */}
             <div className="w-full bg-[#0000001e]  backdrop-blur-3xl  rounded-[40px] ">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px">
                     {[
@@ -68,4 +66,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Home;
