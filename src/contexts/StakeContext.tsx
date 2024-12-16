@@ -4,11 +4,11 @@ import _ from "lodash";
 import { createContext, useContext, useEffect, useState } from "react";
 import { createPublicClient, http } from "viem";
 import { zkSync, zkSyncSepoliaTestnet } from "viem/chains";
-
 import {
     UseBalanceReturnType,
     useAccount,
     useBalance,
+    useSwitchChain,
     useWriteContract,
 } from "wagmi";
 
@@ -31,10 +31,13 @@ export type StakeInfoType = {
     totalStakedOfAddress: number;
     balance: number;
     totalStaked: number;
+    totalStaker: number;
+    totalTx: number;
     rewards: number;
     dailyReward: number;
     stakeShare: number;
     lastClaimedTime: number;
+    aprRate: number,
     transactions: {
         date: string;
         source: string;
@@ -70,7 +73,10 @@ const defaultValues: StakeInfoType = {
     dailyReward: 0,
     stakeShare: 0,
     totalStaked: 0,
+    totalStaker: 0,
+    totalTx: 0,
     lastClaimedTime: 0,
+    aprRate: 0,
     transactions: _.range(1, 11).map((index: number) => ({
         date: "09/12/2024",
         source: "0x1fd6cA086cA06cA0",
@@ -105,6 +111,7 @@ export const useStakeContext = (): StakeContextType => useContext(StakeContext);
 export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     const [count, setCount] = useState(0);
     const { address, chainId, status: accountStaus } = useAccount();
+    const { switchChain } = useSwitchChain();
     const { writeContract, status, error, data } = useWriteContract();
     // const {data} = useReadContract();
     const [txHash, setTxHash] = useState<`0x${string}` | undefined>();
@@ -121,6 +128,8 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     const [stakeInfo, setStakeInfo] = useState();
     const [allowance, setAllowance] = useState();
     const [totalStaked, setTotalStaked] = useState();
+    const [totalStaker, setTotalStaker] = useState();
+    const [totalTx, setTotalTx] = useState();
     const [totalStakedOfAddress, setTotalStakedOfAddress] = useState();
 
     const approve = (amount: number) => {
@@ -186,43 +195,57 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     const refresh = async () => {
         try {
             await balance.refetch();
-            if (address && chainId) {
-                const [
-                    stakeInfo,
-                    allowance,
-                    totalStaked,
-                    totalStakedOfAddress,
-                ]: any = await Promise.all([
-                    publicClient.readContract({
-                        abi: STAKE_CONTRACT_ABI as any,
-                        address: contract,
-                        functionName: "getStakeInfo",
-                        args: [address || "0x0"],
-                    }),
-                    publicClient.readContract({
-                        abi: ZK_TOKEN_ABI as any,
-                        address: token,
-                        functionName: "allowance",
-                        args: [address || "0x0", contract],
-                    }),
-                    publicClient.readContract({
-                        abi: STAKE_CONTRACT_ABI as any,
-                        address: contract,
-                        functionName: "getTotalStaked",
-                        args: [],
-                    }),
-                    publicClient.readContract({
-                        abi: STAKE_CONTRACT_ABI as any,
-                        address: contract,
-                        functionName: "getTokensStaked",
-                        args: [address || "0x0"],
-                    }),
-                ]);
-                setStakeInfo(stakeInfo);
-                setAllowance(allowance);
-                setTotalStaked(totalStaked ? totalStaked : 0);
-                setTotalStakedOfAddress(totalStakedOfAddress);
-            }
+            const [
+                stakeInfo,
+                allowance,
+                totalStaked,
+                totalStakedOfAddress,
+                totalStaker,
+                totalTx
+            ]: any = await Promise.all([
+                publicClient.readContract({
+                    abi: STAKE_CONTRACT_ABI as any,
+                    address: contract,
+                    functionName: "getStakeInfo",
+                    args: [address || "0x0"],
+                }),
+                publicClient.readContract({
+                    abi: ZK_TOKEN_ABI as any,
+                    address: token,
+                    functionName: "allowance",
+                    args: [address || "0x0", contract],
+                }),
+                publicClient.readContract({
+                    abi: STAKE_CONTRACT_ABI as any,
+                    address: contract,
+                    functionName: "getTotalStaked",
+                    args: [],
+                }),
+                publicClient.readContract({
+                    abi: STAKE_CONTRACT_ABI as any,
+                    address: contract,
+                    functionName: "getTokensStaked",
+                    args: [address || "0x0"],
+                }),
+                publicClient.readContract({
+                    abi: STAKE_CONTRACT_ABI as any,
+                    address: contract,
+                    functionName: "getTotalStakedUser",
+                    args: [],
+                }),
+                publicClient.readContract({
+                    abi: STAKE_CONTRACT_ABI as any,
+                    address: contract,
+                    functionName: "getTotalTx",
+                    args: [],
+                }),
+            ]);
+            setStakeInfo(stakeInfo);
+            setAllowance(allowance);
+            setTotalTx(totalTx ? totalTx : 0);
+            setTotalStaker(totalStaker ? totalStaker : 0);
+            setTotalStaked(totalStaked ? totalStaked : 0);
+            setTotalStakedOfAddress(totalStakedOfAddress);
         } catch (error) {
             console.log("Wrong network", error);
         }
@@ -236,7 +259,8 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             const stakedAmount = Number(stakeInfo[0]);
             const unclaimedAmount = Number(stakeInfo[1]);
             const lastClaimedTime = Number(stakeInfo[2]);
-            const rate = Number(0.08);
+            const aprRate = Number(stakeInfo[4]);
+            const rate = Number(aprRate / 10000); // 8%  / 100
             const decimal = Number(10 ** APP_ENV.ZK_DECIMAL);
 
             return (
@@ -252,11 +276,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
 
     useEffect(() => {
         if (address && accountStaus === "connected") {
-            // const { switchChain } = useSwitchChain();
-            // if (isConnected) {
-            //   switchNetwork(chain.mainnet.id);
-            // }
-
+            switchChain({ chainId: APP_ENV.ENABLE_TESTNETS ? zkSyncSepoliaTestnet.id : zkSync.id });
             refresh();
         }
     }, [address, chainId, accountStaus]);
@@ -276,22 +296,20 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
         setStakeInfoValues((prevState) => ({
             ...prevState,
             totalStaked: Number(totalStaked) / 10 ** APP_ENV.ZK_DECIMAL,
-        }));
-    }, [totalStaked]);
-    useEffect(() => {
-        setStakeInfoValues((prevState) => ({
-            ...prevState,
             totalStakedOfAddress:
                 Number(totalStakedOfAddress) / 10 ** APP_ENV.ZK_DECIMAL,
+            totalStaker: Number(totalStaker)
         }));
-    }, [totalStakedOfAddress]);
+    }, [totalStaked, totalStakedOfAddress, totalStaker]);
 
     useEffect(() => {
         if (stakeInfo) {
             const data: any = stakeInfo;
             if (data) {
                 const stakedAmount = Number(data[0]);
-                const rate = Number(0.08);
+                const aprRate = Number(stakeInfo[4]);
+                const rate = Number(aprRate / 10000);
+
                 const decimal = Number(10 ** APP_ENV.ZK_DECIMAL);
                 const rewards = calcRewards();
                 setStakeInfoValues((prevState) => ({
@@ -302,6 +320,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
                     dailyReward:
                         (stakedAmount * rate) / Number(365 * 24 * 60 * 60) / decimal,
                     lastClaimedTime: stakeInfo[2],
+                    aprRate: Number(aprRate / 100),
                 }));
             }
         }

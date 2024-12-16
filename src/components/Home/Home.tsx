@@ -1,13 +1,17 @@
 import Button from "@components/ui/Button";
 import { CiCircleInfo } from "react-icons/ci";
 import { CountUp } from "@components/ui/CountUp";
+import { useStakeContext } from "@contexts/StakeContext";
 
-const TRANSACTIONS = 4000000000000;
-const ADDRESSES = 70000000;
 const TX_COST = 0.1;
-const TVL = 1560000000000;
 
 const Header = () => {
+
+    const {
+        stakeInfo: { totalTx, totalStaked, totalStaker },
+    } = useStakeContext();
+
+
     return (
         <section className="min-h-screen md:min-h-96  md:h-[700px] lg:h-[760px] xl:h-[920px] translate-y-60  pt-16 sm:pt-20 md:pt-24 lg:pt-32 pb-36  md:pb-20 lg:pb-12 flex flex-col justify-end w-full ">
             <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-12 xl:px-4 flex flex-col gap-6 flex-shrink-0 z-10  mb-12">
@@ -24,7 +28,7 @@ const Header = () => {
                         Start Staking
                     </Button>
                     <Button className="w-full sm:w-auto" rounded size="lg">
-                        Audit whitepaper
+                        Audit Whitepaper
                     </Button>
                 </div>
             </div>
@@ -32,10 +36,10 @@ const Header = () => {
             <div className="w-full bg-[#0000001e]  backdrop-blur-3xl  rounded-[40px] ">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px">
                     {[
-                        { label: "TRANSACTIONS", value: <CountUp end={TRANSACTIONS} /> },
-                        { label: "STAKERS", value: <CountUp end={ADDRESSES} /> },
-                        { label: "STAKING TX COST", value: <CountUp end={TX_COST} prefix="$" /> },
-                        { label: "TVL", value: <CountUp end={TVL} prefix="$" /> },
+                        { label: "TRANSACTIONS", value: <CountUp end={totalTx} /> },
+                        { label: "STAKERS", value: <CountUp end={totalStaker} /> },
+                        { label: "STAKING TX COST", value: <CountUp end={TX_COST} prefix="~$" /> },
+                        { label: "TVL", value: <CountUp end={totalStaked} prefix="$" /> },
                     ].map((item, index) => (
                         <div
                             key={item.label}

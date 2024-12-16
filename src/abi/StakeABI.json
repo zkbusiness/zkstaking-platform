@@ -304,6 +304,11 @@
         "type": "bool"
       },
       {
+        "internalType": "uint32",
+        "name": "aprRate",
+        "type": "uint32"
+      },
+      {
         "internalType": "address",
         "name": "staker",
         "type": "address"
@@ -438,6 +443,21 @@
   },
   {
     "inputs": [],
+    "name": "getTotalTx",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x305e5000"
+  },
+  {
+    "inputs": [],
     "name": "owner",
     "outputs": [
       {
@@ -517,6 +537,21 @@
     "type": "function",
     "constant": true,
     "signature": "0xb0e31b2d"
+  },
+  {
+    "inputs": [],
+    "name": "totalTx",
+    "outputs": [
+      {
+        "internalType": "uint128",
+        "name": "",
+        "type": "uint128"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x7220cf39"
   },
   {
     "inputs": [
