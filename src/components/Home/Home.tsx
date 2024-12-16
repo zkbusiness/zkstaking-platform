@@ -1,5 +1,6 @@
 import Button from "@components/ui/Button";
 import { CiCircleInfo } from "react-icons/ci";
+import Link from "next/link";
 import { CountUp } from "@components/ui/CountUp";
 import { useStakeContext } from "@contexts/StakeContext";
 
@@ -24,10 +25,14 @@ const Home = () => {
                 </h2>
                 <div className="flex flex-col sm:flex-row gap-4 my-6">
                     <Button type="primary" className="w-full sm:w-auto" rounded size="lg">
-                        Start Staking
+                        <Link href="/stake">
+                            Start Staking
+                        </Link>
                     </Button>
                     <Button className="w-full sm:w-auto" rounded size="lg">
-                        Audit Whitepaper
+                        <Link href="/audit/whitepaper.pdf">
+                            Audit Whitepaper
+                        </Link>
                     </Button>
                 </div>
             </div>
