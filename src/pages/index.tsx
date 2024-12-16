@@ -12,9 +12,7 @@ const Home: NextPage = () => {
     <div>
       <VideoPlayer />
       <HomeHeader />
-
       <Sections />
-
       <CardSection />
       <FaqSection />
     </div>
