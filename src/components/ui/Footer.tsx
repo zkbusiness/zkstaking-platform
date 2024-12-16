@@ -11,23 +11,23 @@ interface FooterColumn {
 
 const footerColumns: FooterColumn[] = [
   {
-    title: "BUILD ON ZKSYNC",
+    title: "Offcial links",
     links: [
-      { label: "GitHub", href: "#" },
-      { label: "Quickstart", href: "#" },
+      { label: "GitHub", href: "https://github.com/zkbusiness/" },
+      { label: "Smart Contract", href: "#" },
       { label: "Documentation", href: "#" },
-      { label: "Web3 API", href: "#" },
-      { label: "SDK", href: "#" },
-      { label: "Tools", href: "#" },
+      { label: "Audit Whitepaper", href: "#" },
+      { label: "Medium", href: "#" },
+      { label: "Reddit", href: "#" },
     ],
   },
   {
-    title: "ZKSYNC NETWORK",
+    title: "Bridges & DEXs",
     links: [
-      { label: "Status Pages", href: "#" },
-      { label: "Bridges", href: "#" },
-      { label: "Explorers", href: "#" },
-      { label: "Ecosystem", href: "#" },
+      { label: "zkswap.finance", href: "https://www.zkswap.finance/bridge" },
+      { label: "zksync.io", href: "https://portal.zksync.io/bridge" },
+      { label: "Symbiosis", href: "https://app.symbiosis.finance/swap?_gl=1%2Aa44kca%2A_ga%2AMTEyODM4MDAxMC4xNzM0MzU0ODE4%2A_ga_YKCPZTG9X6%2AMTczNDM1NDgxOC4xLjAuMTczNDM1NDgxOC42MC4wLjA.&amountIn&chainIn=Ethereum&chainOut=ZkSync%20Era&tokenIn=ETH&tokenOut=ETH" },
+      { label: "Jumper Exchange", href: "https://jumper.exchange/?fromChain=1&fromToken=0x0000000000000000000000000000000000000000&toChain=324&toToken=0x0000000000000000000000000000000000000000" },
     ],
   },
   {
@@ -62,6 +62,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
+                    target="_blank"
                     className="text-gray-300  text-nowrap hover:text-white transition-colors duration-200"
                   >
                     {link.label}
