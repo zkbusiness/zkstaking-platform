@@ -38,7 +38,7 @@ const NavBar = () => {
       >
         <Link href={"/"}>
           <Image
-            src="/images/logo.svg"
+            src="/images/logo.png"
             alt=""
             width={500}
             height={500}
