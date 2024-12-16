@@ -22,7 +22,6 @@ section {
 }
 
 @media (min-width: 1280px) {
-
   .video-wrapper::before,
   .video-wrapper::after {
     content: "";
@@ -49,7 +48,6 @@ section {
 }
 
 @layer utilities {
-
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     @apply appearance-none;
@@ -58,4 +56,8 @@ section {
   input[type="number"] {
     @apply [moz-appearance:textfield];
   }
+}
+
+.animated-element {
+  transition: all 0.1s;
 }
