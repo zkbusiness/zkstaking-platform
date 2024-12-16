@@ -74,7 +74,7 @@ export const Sections = () => {
                     <Image
                         draggable="false"
                         className="min-h-[300px] m-auto rounded-md"
-                        src={"/images/user-friendly.png"}
+                        src={"/images/userfriendly.png"}
                         alt={"User Friendly"}
                         width={400}
                         height={300}
