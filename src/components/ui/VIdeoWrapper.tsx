@@ -21,7 +21,7 @@ const VideoBackgroundWrapper: React.FC<VideoBackgroundWrapperProps> = ({
   className = "",
   horizontalAlign = "center",
   verticalAlign = "center",
-  onPlay = () => {},
+  onPlay = () => { },
 }) => {
   const [windowWidth, setWindowWidth] = useState(0);
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -30,7 +30,6 @@ const VideoBackgroundWrapper: React.FC<VideoBackgroundWrapperProps> = ({
     const handleResize = () => setWindowWidth(window.innerWidth);
     handleResize();
     window.addEventListener("resize", handleResize);
-    console.log("render=============>video");
 
     const handleEnded = () => {
       if (videoRef.current) {

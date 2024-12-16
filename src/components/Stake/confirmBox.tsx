@@ -27,7 +27,7 @@ export const ConfirmBox = ({
     handleOpenModal,
 }: ConfirmBoxTypes) => {
     const {
-        stakeInfo: { rewards, zkPrice, balance, hasStake, totalStaked },
+        stakeInfo: { rewards, zkPrice, balance, hasStake, totalStaker, aprRate },
         allowance,
         currentTx,
         txStatus,
@@ -182,6 +182,15 @@ export const ConfirmBox = ({
         refresh();
     };
 
+    const getAPRRate = () => {
+        let apr = 8.7;
+        if (aprRate)
+            return aprRate;
+        if (totalStaker <= 3)
+            apr = 13.5;
+        return apr;
+    }
+
     return (
         <Modal
             isOpen={isOpen}
@@ -216,7 +225,7 @@ export const ConfirmBox = ({
                                     >
                                         {step == "success" ? (
                                             <>
-                                                Successfully
+                                                Successfully{' '}
                                                 {currentTx == "claim"
                                                     ? `${currentTx}ed`
                                                     : `${currentTx}d`}
@@ -273,11 +282,11 @@ export const ConfirmBox = ({
                                                 : 0}
                                         </p>
                                         <p className="h-10 flex items-center font-thin   tracking-wider">
-                                            8% APY Amount :
+                                            {getAPRRate()}% APY Amount :
                                             {numeral((amount / 1000) * 80).format("0,0.00000")}
                                         </p>
                                         <p className="h-10 flex items-center font-thin   tracking-wider">
-                                            8% APY USD :
+                                            {getAPRRate()}% APY USD :
                                             {numeral((amount / 1000) * 80 * zkPrice).format(
                                                 "$0,0.00000"
                                             ) !== "$NaN"
