@@ -12,6 +12,12 @@
 /.next/
 /out/
 
+# config files
+/src/config/app.config.ts
+/src/config/env.config.ts
+/src/config/links.config.ts
+/src/config/wagmi.config.ts
+
 # production
 /build
 
