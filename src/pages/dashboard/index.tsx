@@ -21,43 +21,44 @@ import CoinSpinner from "@components/ui/CoinSpinner";
 
 const Dashboard: NextPage = () => {
     const {
-        stakeInfo: { rewards, balance, totalStaked, stakeShare },
+        stakeInfo: { rewards, balance, totalStaked, stakeShare, totalStaker, totalTx, aprRate },
     } = useStakeContext();
 
     const { address, isConnected } = useAccount();
 
     const [pieLoadTime, setPieLoadTime] = useState<boolean>(false);
     const [todayReward, setTodayReward] = useState(0);
-    const isMobile = useScreenWidth(600);
+    const isMobile = useScreenWidth(1200);
+    const [winObj, setWinObj] = useState<any>({})
 
     const [chartData, setChartData] = useState([
         {
             date: "1 day",
-            reward: "0",
+            reward: "100",
         },
         {
             date: "2 day",
-            reward: "0",
+            reward: "200",
         },
         {
             date: "3 day",
-            reward: "0",
+            reward: "500",
         },
         {
             date: "4 day",
-            reward: "0",
+            reward: "150",
         },
         {
             date: "5 day",
-            reward: "0",
+            reward: "700",
         },
         {
             date: "6 day",
-            reward: "0",
+            reward: "620",
         },
         {
             date: "7 day",
-            reward: "0",
+            reward: "350",
         },
     ]);
 
@@ -71,7 +72,7 @@ const Dashboard: NextPage = () => {
                 let reward = Number(((dailyReward * i) / 24).toFixed(3));
                 chartData.push({
                     date: i + "h",
-                    reward,
+                    reward: reward ? reward : 0,
                 });
             }
             setChartData(chartData);
@@ -87,7 +88,10 @@ const Dashboard: NextPage = () => {
             }
         }, 3000);
     }, []);
-    useEffect(() => { }, []);
+
+    useEffect(() => {
+        setWinObj(window);
+    }, [])
 
     // your percent
     const yourPercent = [
@@ -127,142 +131,137 @@ const Dashboard: NextPage = () => {
     };
 
     return (
-        <div className=" text-center ">
+        <div className="text-center mx-6">
             <h2 className=" text-5xl font-bold mt-16 mb-6">User Dashboard</h2>
             {isConnected && address ? (
                 <>
-                    <div className="">
-                        <h3 className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold">
+                    <div className="mb-4">
+                        <h3 className="text-[#4075FF] tracking-wider text-sm md:text-xl font-bold">
                             My $ZK : {balance}
                         </h3>
                     </div>
-
-                    <div className="flex flex-col md:flex-row  mt-6  justify-between justify-self-center max-w-[940px] w-full ">
-                        <div className="col-sm-12 col-md-6 w-full md:w-fit ">
-                            <CoinSpinner
-                                isSilver
-                                size="xl"
-                                className="h-full w-full flex items-center justify-center"
-                            />
-                            {isConnected
-                                ? pieLoadTime && (
+                    <div className="dashboard-info">
+                        <Button type="dark" className=" w-full whitespace-nowrap">
+                            <span className="w-full">APR</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0.0" end={aprRate ? aprRate : 8.7} suffix="%" />
+                            </span>
+                        </Button>
+                        <Button type="dark" className=" w-full whitespace-nowrap">
+                            <span className="w-full">TVL</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0.000" end={totalStaked} />
+                            </span>
+                        </Button>
+                        <Button type="dark" className=" w-full whitespace-nowrap">
+                            <span className="w-full">Total Staker</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0" end={totalStaker} />
+                            </span>
+                        </Button>
+                        <Button type="dark" className=" w-full whitespace-nowrap">
+                            <span className="w-full">Total Transaction</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0" end={totalTx} />
+                            </span>
+                        </Button>
+                        <Button type="dark" className="min-[150px] w-full whitespace-nowrap">
+                            <span className="w-full">My Staking</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0.0000" end={stakeShare} />
+                            </span>
+                        </Button>
+                        <Button type="dark" className="min-[150px] w-full whitespace-nowrap">
+                            <span className="w-full">Reward</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0.00000" end={rewards} />
+                            </span>
+                        </Button>
+                        <Button type="dark" className="min-[150px] w-full whitespace-nowrap">
+                            <span className="w-full">Stake Fee</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0.00" end={APP_ENV.STAKE_FEE} suffix="%" />
+                            </span>
+                        </Button>
+                        <Button type="dark" className="min-[150px] w-full whitespace-nowrap">
+                            <span className="w-full">Unstake Fee</span>
+                            <span className=" w-full">
+                                <CountUp format="0,0.00" end={APP_ENV.STAKE_FEE} suffix="%" />
+                            </span>
+                        </Button>
+                    </div>
+                    {
+                        !pieLoadTime ?
+                            <div className="flex w-full justify-center my-20">
+                                <CoinSpinner
+                                    isSilver
+                                    size="xl"
+                                    className="h-full w-full flex items-center justify-center"
+                                />
+                            </div>
+                            :
+                            <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} mt-10 justify-between gap-4 justify-self-center w-full px-4`}>
+                                <div className={`${isMobile ? 'w-full' : 'md:w-fit flex justify-center'}`}>
                                     <div className="flex mt-4">
                                         <div className="m-auto">
-                                            <div className="racking-wider text-lg md:text-xl font-bold">
+                                            <div className="tracking-wider text-lg md:text-xl font-bold">
                                                 Your Percent
                                             </div>
-                                            <div className="flex text-lg md:text-xl items-center gap-2">
-                                                <div
-                                                    style={{
-                                                        width: "10px",
-                                                        height: "10px",
-                                                        background: "#00C49F",
-                                                        borderRadius: "100%",
-                                                    }}
-                                                ></div>
-                                                <div className=""> total staked amount</div>
+                                            <div className={`${isMobile ? 'flex-row-reverse justify-start items-center gap-4' : 'flex-col'} flex`}>
+                                                <div className="">
+                                                    <div className="flex flex-col sm:flex-row text-lg md:text-xl items-start sm:items-center gap-2">
+                                                        <div
+                                                            style={{
+                                                                width: "10px",
+                                                                height: "10px",
+                                                                background: "#00C49F",
+                                                                borderRadius: "100%",
+                                                            }}
+                                                        ></div>
+                                                        <div className="">TVL</div>
+                                                    </div>
+                                                    <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row text-lg md:text-xl items-start sm:items-center gap-2">
+                                                        <div
+                                                            style={{
+                                                                width: "10px",
+                                                                height: "10px",
+                                                                background: "#0088FE",
+                                                                borderRadius: "100%",
+                                                            }}
+                                                        ></div>
+                                                        <div className="text-start">My Amount</div>
+                                                    </div>
+                                                </div>
+                                                <div className="">
+                                                    <PieChartTotalStaked
+                                                        COLORS={COLORS2}
+                                                        renderCustomizedLabel={renderCustomizedLabel}
+                                                        data={yourPercent}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="flex text-lg md:text-xl items-center gap-2">
-                                                <div
-                                                    style={{
-                                                        width: "10px",
-                                                        height: "10px",
-                                                        background: "#0088FE",
-                                                        borderRadius: "100%",
-                                                    }}
-                                                ></div>
-                                                <div className=""> your staked amount</div>
-                                            </div>
-                                            <PieChartTotalStaked
-                                                COLORS={COLORS2}
-                                                renderCustomizedLabel={renderCustomizedLabel}
-                                                data={yourPercent}
-                                            />
                                         </div>
                                     </div>
-                                )
-                                : pieLoadTime && (
-                                    <div className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold mt-24">
-                                        Connect wallet to see information
-                                    </div>
-                                )}
-                        </div>
-                        <br className=" block md:hidden" />
-                        <div className="flex w-full md:w-96 flex-col gap-14 px-4 md:px-0">
-                            <Button size="xs" type="dark" className="w-full ">
-                                <span className="w-full">APY</span>
-                                <span className=" w-full">
-                                    <CountUp end={8} suffix="%" />
-                                </span>
-                            </Button>
-                            <Button size="xs" type="dark" className="w-full ">
-                                <span className="w-full">Total Staked</span>
-                                <span className=" w-full">
-                                    <CountUp end={totalStaked} />
-                                </span>
-                            </Button>
-                            <Button size="xs" type="dark" className="w-full ">
-                                <span className="w-full">Stake Fee</span>
-                                <span className=" w-full">
-                                    <CountUp end={APP_ENV.STAKE_FEE} suffix="%" />
-                                </span>
-                            </Button>
-                            <Button size="xs" type="dark" className="w-full ">
-                                <span className="w-full">Unstake Fee</span>
-                                <span className=" w-full">
-                                    <CountUp end={APP_ENV.STAKE_FEE} suffix="%" />
-                                </span>
-                            </Button>
-                            {address && isConnected ? (
-                                <>
-                                    <Button size="xs" type="dark" className="w-full ">
-                                        <span className="w-full">My Staking</span>
-                                        <span className=" w-full">
-                                            <CountUp end={stakeShare} />
-                                        </span>
-                                    </Button>
-                                    <Button size="xs" type="dark" className="w-full ">
-                                        <span className="w-full">Reward</span>
-                                        <span className=" w-full">
-                                            <CountUp end={rewards} />
-                                        </span>
-                                    </Button>
-                                </>
-                            ) : (
-                                <div className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold mt-24">
-                                    Connect wallet to see information
                                 </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <div className="chart-container justify mb-2 mt-6">
-                        {address && isConnected && (
-                            <>
-                                <div className="mt-16">
-                                    <h5 className="primary-color">
-                                        Today Reward Chart :&nbsp;{todayReward} &nbsp; ZK
-                                    </h5>
-                                </div>
-
-                                {todayReward > 0 && (
+                                {winObj &&
                                     <LineChart
-                                        height={400}
+                                        height={500}
+                                        width={isMobile ? winObj.innerWidth - 80 : winObj.innerWidth - 370}
                                         data={chartData}
                                         margin={{
                                             top: 5,
-                                            right: 50,
-                                            left: isMobile ? 0 : chartData.length > 0 ? 30 : 0,
+                                            right: 5,
+                                            left: 0,
                                             bottom: 5,
                                         }}
                                     >
-                                        <CartesianGrid strokeDasharray="2 2" />
+                                        {/* <CartesianGrid strokeDasharray="2 2" /> */}
                                         <XAxis dataKey="date" />
                                         <YAxis />
-                                        <Tooltip
+                                        {/* <Tooltip
                                             labelStyle={{ color: "black", fontSize: "20px" }}
-                                        />
-                                        <Legend />
+                                        /> */}
+                                        {/* <Legend /> */}
                                         <Line
                                             type="monotone"
                                             dataKey="reward"
@@ -270,13 +269,12 @@ const Dashboard: NextPage = () => {
                                             activeDot={{ r: 5 }}
                                         />
                                     </LineChart>
-                                )}
-                            </>
-                        )}
-                    </div>
+                                }
+                            </div>
+                    }
                 </>
             ) : (
-                <div className="text-[#4075FF]  tracking-wider text-sm md:text-xl font-bold mt-24">
+                <div className="text-[#4075FF]   text-sm md:text-xl font-bold mt-24">
                     Connect wallet to see information
                 </div>
             )}
