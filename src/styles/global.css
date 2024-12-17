@@ -22,6 +22,7 @@ section {
 }
 
 @media (min-width: 1280px) {
+
   .video-wrapper::before,
   .video-wrapper::after {
     content: "";
@@ -48,6 +49,7 @@ section {
 }
 
 @layer utilities {
+
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     @apply appearance-none;
@@ -60,4 +62,11 @@ section {
 
 .animated-element {
   transition: all 0.1s;
+}
+
+.dashboard-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  transition: all .35s ease 0s;
+  gap: 0.75rem;
 }

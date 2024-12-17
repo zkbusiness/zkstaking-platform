@@ -26,7 +26,7 @@ export const ConfirmButton = ({
     >
       {isLoading ? (
         <div className="flex  items-center justify-between gap-8 ">
-          <Spinner color="#10B981" className=" h-6" />
+          <Spinner color="#FFFFFF" className=" h-6" />
 
           <div className="">{showMsg}</div>
         </div>

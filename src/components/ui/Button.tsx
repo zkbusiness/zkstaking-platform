@@ -63,7 +63,7 @@ const Button = ({
     <button
       onClick={onClick}
       className={cn(
-        "h-auto flex items-center justify-center   shadow-[#00000054]",
+        "h-auto flex items-center justify-center shadow-[#00000054]",
         sizeClass[size],
         rounded ? "rounded-full" : "rounded-lg",
         ghost ? borderClass[type] : bgClass[type],

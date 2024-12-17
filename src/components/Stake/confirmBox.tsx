@@ -205,11 +205,11 @@ export const ConfirmBox = ({
         >
             {step !== "" ? (
                 <>
-                    <div className="confirm-box-modal">
-                        <div className="confirm-modal-header">
+                    <div className="flex flex-col justify-between h-full">
+                        <div className="">
                             <h3> {step == "success" ? <>Congratulations</> : <>Failed</>}</h3>
                         </div>
-                        <div className="confirm-modal-body">
+                        <div className=" ">
                             <div className="flex flex-col between h-100">
                                 <div className="m-auto">
                                     {step == "success" ? (
@@ -218,7 +218,7 @@ export const ConfirmBox = ({
                                         <BsXCircle color="#dd2424" fontSize={"8rem"} />
                                     )}
                                 </div>
-                                <div className="">
+                                <div className="flex w-full justify-center">
                                     <div
                                         className={`${step == "success" ? "" : ""
                                             } transaction-text`}
@@ -237,7 +237,7 @@ export const ConfirmBox = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="confirm-modal-footer">
+                        <div className="justify-center flex">
                             <Button shadow="md" rounded type="primary" onClick={done}>
                                 Done
                             </Button>
@@ -245,21 +245,21 @@ export const ConfirmBox = ({
                     </div>
                 </>
             ) : (
-                <div className="confirm-box-modal">
-                    <div className="confirm-modal-header">
-                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold  flex flex-col  space-y-16 ">
+                <div className="flex flex-col justify-between h-full">
+                    <div className="">
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold flex flex-col space-y-16 ">
                             Please Confirm
                         </h3>
                     </div>
-                    <div className="confirm-modal-body w-full mt-3 ">
-                        <div className="flex flex-col justify-between   ">
+                    <div className=" w-full mt-3 ">
+                        <div className="flex flex-col justify-between">
                             {type == "stake" && (
                                 <>
                                     <div className="">
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             $ZK Amount : {numeral(amount).format("0,0.00000")}
                                         </p>
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             Fee {APP_ENV.STAKE_FEE}% :
                                             {numeral(
                                                 (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
@@ -269,7 +269,7 @@ export const ConfirmBox = ({
                                                 ).format("0,0.00000")
                                                 : 0}
                                         </p>
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             Fee USD :
                                             {numeral(
                                                 (amount / 1000) * (APP_ENV.STAKE_FEE * 10) * zkPrice
@@ -281,11 +281,11 @@ export const ConfirmBox = ({
                                                 ).format("$0,0.00000")
                                                 : 0}
                                         </p>
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             {getAPRRate()}% APY Amount :
                                             {numeral((amount / 1000) * 80).format("0,0.00000")}
                                         </p>
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             {getAPRRate()}% APY USD :
                                             {numeral((amount / 1000) * 80 * zkPrice).format(
                                                 "$0,0.00000"
@@ -307,7 +307,7 @@ export const ConfirmBox = ({
                             {type == "unstake" && (
                                 <>
                                     <div className="">
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             $ZK Amount : {numeral(amount).format("0,0.00000")}
                                         </p>
                                         <p style={{ color: "yellow" }}>
@@ -318,7 +318,7 @@ export const ConfirmBox = ({
                                                     : 0}
                                             </span>
                                         </p>
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             Fee {APP_ENV.STAKE_FEE}% :
                                             {numeral(
                                                 (amount / 1000) * (APP_ENV.STAKE_FEE * 10)
@@ -328,7 +328,7 @@ export const ConfirmBox = ({
                                                 ).format("0,0.00000")
                                                 : 0}
                                         </p>
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             Fee USD :
                                             {numeral(
                                                 (amount / 1000) * (APP_ENV.STAKE_FEE * 10) * zkPrice
@@ -353,7 +353,7 @@ export const ConfirmBox = ({
                             {type == "claim" && (
                                 <>
                                     <div className="mb-28">
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             Claim Amount :
                                             <span className="" style={{ color: "yellow" }}>
                                                 {rewards > 0.000001
@@ -361,7 +361,7 @@ export const ConfirmBox = ({
                                                     : 0}
                                             </span>
                                         </p>
-                                        <p className="h-10 flex items-center font-thin   tracking-wider">
+                                        <p className="h-10 flex items-center font-thin tracking-wider">
                                             USD Price :
                                             {numeral(rewards * zkPrice).format("$0,0.00000") !==
                                                 "$NaN"
@@ -380,7 +380,7 @@ export const ConfirmBox = ({
                         </div>
                     </div>
 
-                    <div className="w-full text-center mt-4 text-[#32ffff]  tracking-wider text-sm md:text-lg font-bold">
+                    <div className="w-full text-center mt-4 text-white tracking-wider text-sm md:text-lg font-bold">
                         {type == "claim" ? (
                             <>* No fee applies for {type}</>
                         ) : (
