@@ -46,29 +46,9 @@
         "type": "uint256"
       }
     ],
-    "name": "DepositDynamicReward",
+    "name": "DepositFromMEV",
     "type": "event",
-    "signature": "0x13a5e8efcf23ec36200a756805e871b0556810a2655e7aa3023e8617ec72aa67"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "from",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "DepositFixedReward",
-    "type": "event",
-    "signature": "0x33497c4bc4267b6275efd823177736f3a2ddb2c61f762f5691ed838499c130b8"
+    "signature": "0xc2754bf66f7633f2c35a1846585c3049ed9e0d22341a20a0b64323b584f77571"
   },
   {
     "anonymous": false,
@@ -89,26 +69,6 @@
     "name": "OwnershipTransferred",
     "type": "event",
     "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "to",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "PreventCheckArbitrage",
-    "type": "event",
-    "signature": "0xcae2677d4e89a4113ce2290e057fef2ac7c43664af9e41174507982d8564476f"
   },
   {
     "anonymous": false,
@@ -166,9 +126,9 @@
         "type": "uint256"
       }
     ],
-    "name": "WithdrawFixedReward",
+    "name": "WithdrawFromMEV",
     "type": "event",
-    "signature": "0x2364700ace1a1106804c7d24ef504586f238247fbf8c46532657606e4e054419"
+    "signature": "0x046014c3553fcac39895ca351ec99bc0647b9eafcc68f1be4f4367e0285a57b9"
   },
   {
     "inputs": [],
@@ -186,7 +146,7 @@
         "type": "uint128"
       }
     ],
-    "name": "depositFixedReward",
+    "name": "depositFromMEV",
     "outputs": [
       {
         "internalType": "uint128",
@@ -196,7 +156,7 @@
     ],
     "stateMutability": "nonpayable",
     "type": "function",
-    "signature": "0xf652871b"
+    "signature": "0xbe25ea14"
   },
   {
     "inputs": [],
@@ -625,7 +585,7 @@
   },
   {
     "inputs": [],
-    "name": "withdrawFixedReward",
+    "name": "withdrawToMEV",
     "outputs": [
       {
         "internalType": "uint256",
@@ -635,7 +595,7 @@
     ],
     "stateMutability": "nonpayable",
     "type": "function",
-    "signature": "0x2d1185e1"
+    "signature": "0x50b8543d"
   },
   {
     "stateMutability": "payable",
