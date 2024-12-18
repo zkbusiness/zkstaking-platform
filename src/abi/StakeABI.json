@@ -418,21 +418,6 @@
   },
   {
     "inputs": [],
-    "name": "mevBotLoanContract",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true,
-    "signature": "0x96235a2a"
-  },
-  {
-    "inputs": [],
     "name": "owner",
     "outputs": [
       {
@@ -597,20 +582,6 @@
     "stateMutability": "nonpayable",
     "type": "function",
     "signature": "0xc69bebe4"
-  },
-  {
-    "inputs": [],
-    "name": "withdrawToMEV",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x50b8543d"
   },
   {
     "stateMutability": "payable",
