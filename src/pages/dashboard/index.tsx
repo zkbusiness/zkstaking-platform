@@ -100,7 +100,7 @@ const Dashboard: NextPage = () => {
     };
 
     return (
-        <div className="text-center mx-6 ">
+        <div className="text-center mx-6">
             <h2 className=" text-5xl font-bold mt-16 mb-6">User Dashboard</h2>
             {isConnected && address ? (
                 <>

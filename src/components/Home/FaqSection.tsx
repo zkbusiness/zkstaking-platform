@@ -52,9 +52,7 @@ const FaqSection = () => {
       icon: "/images/faq.webp",
       title: "When can I unstake my assets?",
       description: "Staking may or may not be possible early depending...",
-      content: `
-            Staking may or may not be possible early depending on the terms of the staking contract.
-            Users can withdraw at any time.`,
+      content: `Users can withdraw funds whenever they want.`,
     },
     {
       icon: "/images/faq.webp",

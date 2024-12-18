@@ -584,20 +584,6 @@
     "signature": "0xc69bebe4"
   },
   {
-    "inputs": [],
-    "name": "withdrawToMEV",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0x50b8543d"
-  },
-  {
     "stateMutability": "payable",
     "type": "receive",
     "payable": true
