@@ -307,9 +307,10 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             totalStaked: Number(totalStaked) / 10 ** APP_ENV.ZK_DECIMAL,
             totalStakedOfAddress:
                 Number(totalStakedOfAddress) / 10 ** APP_ENV.ZK_DECIMAL,
-            totalStaker: Number(totalStaker)
+            totalStaker: Number(totalStaker),
+            totalTx: Number(totalTx)
         }));
-    }, [totalStaked, totalStakedOfAddress, totalStaker]);
+    }, [totalStaked, totalStakedOfAddress, totalStaker, totalTx]);
 
     useEffect(() => {
         if (stakeInfo) {

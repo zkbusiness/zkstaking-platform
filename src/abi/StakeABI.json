@@ -418,6 +418,21 @@
   },
   {
     "inputs": [],
+    "name": "mevBotLoanContract",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true,
+    "signature": "0x96235a2a"
+  },
+  {
+    "inputs": [],
     "name": "owner",
     "outputs": [
       {
