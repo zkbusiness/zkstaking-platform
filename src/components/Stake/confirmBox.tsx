@@ -283,14 +283,14 @@ export const ConfirmBox = ({
                                         </p>
                                         <p className="h-10 flex items-center font-thin tracking-wider">
                                             {getAPRRate()}% APY Amount :
-                                            {numeral((amount / 1000) * 80).format("0,0.00000")}
+                                            {numeral((amount / 1000) * (getAPRRate() * 10)).format("0,0.00000")}
                                         </p>
                                         <p className="h-10 flex items-center font-thin tracking-wider">
                                             {getAPRRate()}% APY USD :
-                                            {numeral((amount / 1000) * 80 * zkPrice).format(
+                                            {numeral((amount / 1000) * (getAPRRate() * 10) * zkPrice).format(
                                                 "$0,0.00000"
                                             ) !== "$NaN"
-                                                ? numeral((amount / 1000) * 80 * zkPrice).format(
+                                                ? numeral((amount / 1000) * (getAPRRate() * 10) * zkPrice).format(
                                                     "$0,0.00000"
                                                 )
                                                 : 0}
