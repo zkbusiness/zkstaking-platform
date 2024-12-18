@@ -101,7 +101,7 @@ const Dashboard: NextPage = () => {
 
     return (
         <div className="text-center mx-6">
-            <h2 className=" text-5xl font-bold mt-16 mb-6">User Dashboard</h2>
+            <h2 className=" text-5xl font-bold mt-16 mb-6">Dashboard</h2>
             {isConnected && address ? (
                 <>
                     <div className="mb-4">
@@ -280,7 +280,7 @@ const Dashboard: NextPage = () => {
                 </>
             ) : (
                 <div className="text-[#4075FF]   text-sm md:text-xl font-bold my-24">
-                    Connect wallet to see information
+                    Connect wallet to join
                 </div>
             )}
         </div>

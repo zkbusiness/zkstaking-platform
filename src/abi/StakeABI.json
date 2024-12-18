@@ -24,11 +24,23 @@
         "internalType": "uint256",
         "name": "dynamicAmount",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "eventType",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "time",
+        "type": "uint32"
       }
     ],
     "name": "ClaimReward",
     "type": "event",
-    "signature": "0xe74e5c9d4ac1fc33412485f18c159a0a391efe287ab3fd271123f30e6bacf4e3"
+    "signature": "0xcd231c8fa998a58d2692d9a3bbb80662f8577bbd6a4ca49c6089bf34d20117f2"
   },
   {
     "anonymous": false,
@@ -81,6 +93,18 @@
       },
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "eventType",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "time",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
@@ -88,7 +112,7 @@
     ],
     "name": "StakeTokens",
     "type": "event",
-    "signature": "0xeb564dbda54c69318a29599b8551d044674ca4e3c47f3c0da3f4f253c90b1702"
+    "signature": "0x83938035edf47488795a3ebbac7e3731297dbfd2e1d6d7835d7280e7e5d97c52"
   },
   {
     "anonymous": false,
@@ -101,6 +125,18 @@
       },
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "eventType",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "time",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
@@ -108,7 +144,7 @@
     ],
     "name": "UnstakeTokens",
     "type": "event",
-    "signature": "0xf74a79d13d6fdbdf26b2c779e6a24490a43e65d60cc7e064740f8d40b2b5ea2c"
+    "signature": "0x48d92aeab675243f3588bd62c000b4b626c9628bafd58cd3b7827e6e58b887dd"
   },
   {
     "anonymous": false,
