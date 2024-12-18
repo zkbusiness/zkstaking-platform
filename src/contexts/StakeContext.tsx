@@ -118,7 +118,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     const [currentTx, setCurrentTx] = useState("");
     const [txStatus, setTxStatus] = useState("");
     const token = getZKTokenAddress(chainId);
-    const contract = getStakingContractAddress(chainId);
+    const contract = getStakingContractAddress(chainId ? chainId : 300);
 
     const balance: UseBalanceReturnType = useBalance({
         address,
@@ -198,10 +198,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             const [
                 stakeInfo,
                 allowance,
-                totalStaked,
                 totalStakedOfAddress,
-                totalStaker,
-                totalTx
             ]: any = await Promise.all([
                 publicClient.readContract({
                     abi: STAKE_CONTRACT_ABI as any,
@@ -218,38 +215,49 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
                 publicClient.readContract({
                     abi: STAKE_CONTRACT_ABI as any,
                     address: contract,
-                    functionName: "getTotalStaked",
-                    args: [],
-                }),
-                publicClient.readContract({
-                    abi: STAKE_CONTRACT_ABI as any,
-                    address: contract,
                     functionName: "getTokensStaked",
                     args: [address || "0x0"],
                 }),
-                publicClient.readContract({
-                    abi: STAKE_CONTRACT_ABI as any,
-                    address: contract,
-                    functionName: "getTotalStakedUser",
-                    args: [],
-                }),
-                publicClient.readContract({
-                    abi: STAKE_CONTRACT_ABI as any,
-                    address: contract,
-                    functionName: "getTotalTx",
-                    args: [],
-                }),
             ]);
+
             setStakeInfo(stakeInfo);
             setAllowance(allowance);
-            setTotalTx(totalTx ? totalTx : 0);
-            setTotalStaker(totalStaker ? totalStaker : 0);
-            setTotalStaked(totalStaked ? totalStaked : 0);
             setTotalStakedOfAddress(totalStakedOfAddress);
+
         } catch (error) {
             console.log("Wrong network", error);
         }
     };
+
+    const refreshWithoutConnect = async () => {
+        const [
+            totalStaked,
+            totalStaker,
+            totalTx
+        ]: any = await Promise.all([
+            publicClient.readContract({
+                abi: STAKE_CONTRACT_ABI as any,
+                address: contract,
+                functionName: "getTotalStaked",
+                args: [],
+            }),
+            publicClient.readContract({
+                abi: STAKE_CONTRACT_ABI as any,
+                address: contract,
+                functionName: "getTotalStakedUser",
+                args: [],
+            }),
+            publicClient.readContract({
+                abi: STAKE_CONTRACT_ABI as any,
+                address: contract,
+                functionName: "getTotalTx",
+                args: [],
+            }),
+        ]);
+        setTotalStaked(totalStaked ? totalStaked : 0);
+        setTotalStaker(totalStaker ? totalStaker : 0);
+        setTotalTx(totalTx ? totalTx : 0);
+    }
 
     const calcRewards = () => {
         // const data: any = stakeInfo.data;
@@ -279,6 +287,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             switchChain({ chainId: APP_ENV.ENABLE_TESTNETS ? zkSyncSepoliaTestnet.id : zkSync.id });
             refresh();
         }
+        refreshWithoutConnect();
     }, [address, chainId, accountStaus]);
 
     useEffect(() => {
