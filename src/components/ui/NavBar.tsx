@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Link as LinkType } from "@customtypes/link";
 import { pages } from "@config/index";
 import { LiaExternalLinkAltSolid } from "react-icons/lia";
-import { FaDiscord, FaTelegram, FaTelegramPlane } from "react-icons/fa";
+import { FaDiscord, FaTelegramPlane } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
 import Image from "next/image";
@@ -26,14 +26,15 @@ const NavBar = () => {
 
   return (
     <div
-      className=" relative"
+      className=" relative "
       style={{
         zIndex: "10000",
       }}
     >
       <div
-        className={`flex h-[86px]  px-4 md:px-8 w-full items-center justify-between text-white ${visibleMenu ? "bg-foreground" : ""
-          } `}
+        className={`flex h-[86px]  px-4 md:px-8 w-full items-center justify-between text-white  ${
+          visibleMenu ? "bg-foreground" : ""
+        } `}
       >
         <Link href={"/"}>
           <Image
@@ -98,6 +99,7 @@ const NavBar = () => {
         <div className="flex flex-col gap-4 text-md w-screen   p-4 bg-black h-screen">
           {pages.map((link: LinkType, id) => (
             <Link
+              onClick={() => setVisibleMenu(() => false)}
               key={id}
               href={link.path}
               className="flex  items-center"
@@ -116,13 +118,28 @@ const NavBar = () => {
             </Link>
           ))}
           <div className=" flex items-center gap-2 justify-center">
-            <Button type="dark" size="sm" rounded>
+            <Button
+              type="dark"
+              size="sm"
+              rounded
+              onClick={() => setVisibleMenu(() => false)}
+            >
               <FaTelegramPlane />
             </Button>
-            <Button type="dark" size="sm" rounded>
+            <Button
+              type="dark"
+              size="sm"
+              rounded
+              onClick={() => setVisibleMenu(() => false)}
+            >
               <FaDiscord />
             </Button>
-            <Button type="dark" size="sm" rounded>
+            <Button
+              type="dark"
+              size="sm"
+              rounded
+              onClick={() => setVisibleMenu(() => false)}
+            >
               <BsTwitterX />
             </Button>
           </div>
