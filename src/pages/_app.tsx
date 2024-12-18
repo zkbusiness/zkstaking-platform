@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <RainbowKitProvider coolMode={false} theme={myTheme}>
             <StakeContextProvider>
               <main className=" flex justify-center">
-                <div className=" px-0  xl:max-w-[1500px] ">
+                <div className=" px-0  w-full xl:max-w-[1500px] ">
                   <NavBar />
                   <Component {...pageProps} />
                   <Footer />

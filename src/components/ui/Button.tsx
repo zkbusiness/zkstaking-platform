@@ -34,9 +34,9 @@ export const borderClass = {
 // Map for size-specific padding styles.
 export const sizeClass = {
   xs: "px-3 py-3",
-  sm: "px-4 py-4", // Small size padding.
-  md: "px-10 py-4", // Medium size padding.
-  lg: "px-16 py-5 ", // Large size padding.
+  sm: "xs:px-4 xs:py-4 px-3 py-3", // Small size padding.
+  md: "xs:px-10 xs:py-4 px-3 py-3", // Medium size padding.
+  lg: "xs:px-16 xs:py-5  px-3 py-3", // Large size padding.
 };
 export const shadowClasses = {
   none: "",
@@ -65,7 +65,7 @@ const Button = ({
       className={cn(
         "h-auto flex items-center justify-center shadow-[#00000054]",
         sizeClass[size],
-        rounded ? "rounded-full" : "rounded-lg",
+        rounded ? " rounded-3xl xs:rounded-full" : "rounded-lg",
         ghost ? borderClass[type] : bgClass[type],
         className,
         shadowClasses[shadow]
