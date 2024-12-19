@@ -3,36 +3,36 @@ import { Spinner } from "../ui/spinner";
 import Button from "../ui/Button";
 
 interface ConfirmButtonTypes {
-  showMsg: string;
-  text: string;
-  isLoading: boolean;
-  handleFunc: any;
+    showMsg: string;
+    text: string;
+    isLoading: boolean;
+    handleFunc: any;
 }
 export const ConfirmButton = ({
-  showMsg,
-  text,
-  isLoading,
-  handleFunc,
+    showMsg,
+    text,
+    isLoading,
+    handleFunc,
 }: ConfirmButtonTypes) => {
-  return (
-    <Button
-      type="primary"
-      rounded
-      shadow="md"
-      className="py-3 mt-2"
-      onClick={() => {
-        !isLoading && handleFunc();
-      }}
-    >
-      {isLoading ? (
-        <div className="flex  items-center justify-between gap-8 ">
-          <Spinner color="#FFFFFF" className=" h-6" />
+    return (
+        <Button
+            type="primary"
+            rounded
+            shadow="md"
+            className="py-3 mt-2"
+            onClick={() => {
+                !isLoading && handleFunc();
+            }}
+        >
+            {isLoading ? (
+                <div className="flex  items-center justify-between gap-8 ">
+                    <Spinner color="#FFFFFF" className=" h-6" />
 
-          <div className="">{showMsg}</div>
-        </div>
-      ) : (
-        <>{text}</>
-      )}
-    </Button>
-  );
+                    <div className="">{showMsg}</div>
+                </div>
+            ) : (
+                <>{text}</>
+            )}
+        </Button>
+    );
 };
