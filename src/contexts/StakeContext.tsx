@@ -286,6 +286,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             switchChain({ chainId: APP_ENV.ENABLE_TESTNETS ? zkSyncSepoliaTestnet.id : zkSync.id });
             refresh();
         }
+        refreshWithoutConnect();
     }, [address, chainId, accountStaus]);
 
     useEffect(() => {
