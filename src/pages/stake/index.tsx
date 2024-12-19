@@ -188,7 +188,7 @@ const StakeLayout: NextPage = () => {
                                     <div className="flex justify-between font-semibold  ">
                                         <span>APY Percent</span>
                                         <span>
-                                            <CountUp end={aprRate ? aprRate : totalStaker > 100 ? 8.7 : 13.5} suffix="%" />
+                                            <CountUp end={aprRate ? aprRate : 8.7} suffix="%" />
                                         </span>
                                     </div>
                                     <div className=" bg-white h-px my-4" />
@@ -340,8 +340,8 @@ const StakeLayout: NextPage = () => {
                                         <span>
                                             ZK{" "}
                                             <span className="text-yellow-300">
-                                                {rewards > 0.000001
-                                                    ? numeral(rewards).format("0,0.00000")
+                                                {rewards > 0.0000001
+                                                    ? numeral(rewards).format("0,0.000000")
                                                     : 0}
                                             </span>
                                         </span>

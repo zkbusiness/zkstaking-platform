@@ -62,6 +62,7 @@ export type StakeContextType = {
     claim: () => void;
     setTxStatus: (status: string) => void;
     refresh: () => void;
+    refreshWithoutConnect: () => void;
 };
 
 const defaultValues: StakeInfoType = {
@@ -103,6 +104,7 @@ const StakeContext = createContext<StakeContextType>({
     claim: () => { },
     setTxStatus: () => { },
     refresh: () => { },
+    refreshWithoutConnect: () => { },
 });
 
 export const useStakeContext = (): StakeContextType => useContext(StakeContext);
@@ -158,7 +160,6 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             args: [largeNumberString],
             // gas: parseGwei('0.001'),
         });
-        refresh();
     };
 
     const unstake = (amount: number) => {
@@ -173,7 +174,6 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             args: [largeNumberString],
             // gas: parseGwei('0.001'),
         });
-        refresh();
     };
 
     const claim = () => {
@@ -186,7 +186,6 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             args: [],
             // gas: parseGwei('0.0001'),
         });
-        refresh();
     };
     const [stakeInfoValues, setStakeInfoValues] =
         useState<StakeInfoType>(defaultValues);
@@ -287,7 +286,6 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             switchChain({ chainId: APP_ENV.ENABLE_TESTNETS ? zkSyncSepoliaTestnet.id : zkSync.id });
             refresh();
         }
-        refreshWithoutConnect();
     }, [address, chainId, accountStaus]);
 
     useEffect(() => {
@@ -300,17 +298,6 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     useEffect(() => {
         setAllowanceValue(Number(allowance));
     }, [allowance]);
-
-    useEffect(() => {
-        setStakeInfoValues((prevState) => ({
-            ...prevState,
-            totalStaked: Number(totalStaked) / 10 ** APP_ENV.ZK_DECIMAL,
-            totalStakedOfAddress:
-                Number(totalStakedOfAddress) / 10 ** APP_ENV.ZK_DECIMAL,
-            totalStaker: Number(totalStaker),
-            totalTx: Number(totalTx)
-        }));
-    }, [totalStaked, totalStakedOfAddress, totalStaker, totalTx]);
 
     useEffect(() => {
         if (stakeInfo) {
@@ -326,11 +313,17 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
                     ...prevState,
                     hasStake: stakedAmount > 0,
                     stakeShare: stakedAmount / decimal,
+                    totalStakedOfAddress:
+                        Number(totalStakedOfAddress) / 10 ** APP_ENV.ZK_DECIMAL,
+                    totalStaked: Number(totalStaked) / 10 ** APP_ENV.ZK_DECIMAL,
+
+                    totalStaker: Number(totalStaker),
+                    totalTx: Number(totalTx),
                     rewards,
                     dailyReward:
                         (stakedAmount * rate) / Number(365 * 24 * 60 * 60) / decimal,
                     lastClaimedTime: stakeInfo[2],
-                    aprRate: Number(aprRate / 100),
+                    aprRate: Number(aprRate / 100)
                 }));
             }
         }
@@ -391,6 +384,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
                 claim,
                 setTxStatus,
                 refresh,
+                refreshWithoutConnect
             }}
         >
             {props.children}
