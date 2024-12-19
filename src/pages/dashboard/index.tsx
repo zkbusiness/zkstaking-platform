@@ -27,26 +27,8 @@ const Dashboard: NextPage = () => {
     const { address, isConnected } = useAccount();
 
     const [pieLoadTime, setPieLoadTime] = useState<boolean>(false);
-    const [todayReward, setTodayReward] = useState(0);
     const isMobile = useScreenWidth(1200);
     const [winObj, setWinObj] = useState<any>({});
-
-    useEffect(() => {
-        if (address && isConnected && stakeShare) {
-            let chartData: any = [];
-            let eightPercentAmount = (stakeShare / 100) * 8;
-            let dailyReward = eightPercentAmount / 365;
-            setTodayReward(Number(dailyReward.toFixed(3)));
-            for (let i = 1; i <= 24; i++) {
-                let reward = Number(((dailyReward * i) / 24).toFixed(3));
-                chartData.push({
-                    date: i + "h",
-                    reward: reward ? reward : 0,
-                });
-            }
-            // setChartData(chartData);
-        }
-    }, [address, isConnected, stakeShare]);
 
     useEffect(() => {
         setPieLoadTime(false);
@@ -205,16 +187,14 @@ const Dashboard: NextPage = () => {
                         </div>
                     ) : (
                         <div
-                            className={`flex ${
-                                isMobile ? "flex-col" : "flex-row"
-                            } mt-10 justify-between gap-4 justify-self-center w-full px-0 xs:px-4`}
+                            className={`flex ${isMobile ? "flex-col" : "flex-row"
+                                } mt-10 justify-between gap-4 justify-self-center w-full px-0 xs:px-4`}
                         >
                             <div
-                                className={`${
-                                    isMobile
+                                className={`${isMobile
                                         ? "w-full"
                                         : "md:w-fit flex justify-center"
-                                }`}
+                                    }`}
                             >
                                 <div className="flex mt-4">
                                     <div className="m-auto w-full">
@@ -222,11 +202,10 @@ const Dashboard: NextPage = () => {
                                             Your Percent
                                         </div>
                                         <div
-                                            className={`${
-                                                isMobile
+                                            className={`${isMobile
                                                     ? " justify-start items-center gap-4"
                                                     : ""
-                                            } flex flex-col`}
+                                                } flex flex-col`}
                                         >
                                             <div className="">
                                                 <div className="flex  items-center sm:flex-row text-lg md:text-xl  sm:items-center gap-2">
