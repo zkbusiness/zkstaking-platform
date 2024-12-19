@@ -39,6 +39,7 @@ export const ConfirmBox = ({
         unstake,
         setTxStatus,
         refresh,
+        refreshWithoutConnect
     } = useStakeContext();
 
     const config = useConfig();
@@ -122,6 +123,7 @@ export const ConfirmBox = ({
                         setPendingTx(false);
                         setTxStatus("");
                         refresh();
+                        refreshWithoutConnect();
                         if (currentTx === "stake") toast.success("Successfully Staked");
                         else toast.success("Successfully Unstaked");
                     });
@@ -145,6 +147,7 @@ export const ConfirmBox = ({
                         setPendingTx(false);
                         setTxStatus("");
                         refresh();
+                        refreshWithoutConnect();
                         toast.success("Successfully Claimed");
                     });
                 } else if (txStatus === "error") {
@@ -180,6 +183,7 @@ export const ConfirmBox = ({
         setStep("");
         setTxStatus("");
         refresh();
+        refreshWithoutConnect();
     };
 
     const getAPRRate = () => {
