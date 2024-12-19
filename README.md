@@ -14,4 +14,4 @@ Open [http://localhost:4100](http://localhost:4100) with your browser to see the
 
 ### Continue earning with staking
 
-<img align="left" style="display:flex" alt="GIF" src="https://camo.githubusercontent.com/25bd2279a3574e5ac7249c3b8e3fd2f68afcdbc2746fda1ed21af1b159a3edc7/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f6d61782f313336302f312a564f4e39674854727a65485a624866587371667a45412e676966" width="400" height="286" />
+<img align="center" style="display:flex" alt="zksyncstaking" src="https://github.com/zkbusiness/zkstaking-platform/blob/dev/public/images/full-screen.png?raw=true"/>
