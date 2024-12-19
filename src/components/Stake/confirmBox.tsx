@@ -113,7 +113,7 @@ export const ConfirmBox = ({
                     setTxStatus("");
                     toast.error(txError);
                 } else if (txStatus === "pending") {
-                    setShowMsg("Approving token...");
+                    setShowMsg("Processing token...");
                 }
             } else if (currentTx === "stake" || currentTx === "unstake") {
                 if (txStatus === "success") {

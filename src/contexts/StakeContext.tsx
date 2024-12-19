@@ -135,7 +135,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     const approve = (amount: number) => {
         setCurrentTx("approve");
         setTxStatus("");
-        const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
+        const largeNumber = BigInt(amount * 1000000) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
         const largeNumberString = largeNumber.toString();
         writeContract({
             abi: ZK_TOKEN_ABI as any,
