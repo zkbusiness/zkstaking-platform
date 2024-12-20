@@ -44,60 +44,69 @@ const LineChartStakeChange = () => {
                     [...data].sort((a, b) => a.amount - b.amount)[0].amount
                 );
             })
-            .catch((err) => {});
+            .catch((err) => { });
     }, [view]);
 
     return (
         <div className="w-full relative">
-            <Select
-                options={options}
-                className=" absolute  right-0 w-20 top-0"
-                style={{
-                    zIndex: "10000",
-                }}
-                defaultValue="week"
-                onChange={(value) => setView(value)}
-            />
-            <ResponsiveContainer width={"100%"} height={450}>
-                <LineChart
-                    className={isMobile ? " -translate-x-4" : ""}
-                    height={500}
-                    data={chartData}
-                    margin={{
-                        top: 5,
-                        right: 5,
-                        left: 0,
-                        bottom: 5,
-                    }}
-                >
-                    <XAxis dataKey="time" />
-                    <YAxis
-                        domain={[domainStart]}
-                        tickFormatter={(value) => formatNumber(value)}
-                    />
-                    <Tooltip
-                        contentStyle={{
-                            borderRadius: "5px",
-                            backgroundColor: "#1A1A1A",
-                            border: "none",
-                        }}
-                        labelStyle={{
-                            color: "white",
-                            fontSize: "20px",
-                        }}
-                        formatter={(value: number) => {
-                            return <>{formatNumber(value, "0,0")}</>;
-                        }}
-                    />
-                    {/* <Legend /> */}
-                    <Line
-                        type="monotone"
-                        dataKey="amount"
-                        stroke="#8884d8"
-                        activeDot={{ r: 5 }}
-                    />
-                </LineChart>
-            </ResponsiveContainer>
+            {
+                chartData.length > 0 ?
+                    <>
+                        <Select
+                            options={options}
+                            className=" absolute right-0 w-20 top-0"
+                            style={{
+                                zIndex: "10000",
+                            }}
+                            defaultValue="week"
+                            onChange={(value) => setView(value)}
+                        />
+                        <ResponsiveContainer width={"100%"} height={450}>
+                            <LineChart
+                                className={isMobile ? " -translate-x-4" : ""}
+                                height={500}
+                                data={chartData}
+                                margin={{
+                                    top: 5,
+                                    right: 5,
+                                    left: 0,
+                                    bottom: 5,
+                                }}
+                            >
+                                <XAxis dataKey="time" />
+                                <YAxis
+                                    domain={[domainStart]}
+                                    tickFormatter={(value) => formatNumber(value)}
+                                />
+                                <Tooltip
+                                    contentStyle={{
+                                        borderRadius: "5px",
+                                        backgroundColor: "#1A1A1A",
+                                        border: "none",
+                                    }}
+                                    labelStyle={{
+                                        color: "white",
+                                        fontSize: "20px",
+                                    }}
+                                    formatter={(value: number) => {
+                                        return <>{formatNumber(value, "0,0")}</>;
+                                    }}
+                                />
+                                {/* <Legend /> */}
+                                <Line
+                                    type="monotone"
+                                    dataKey="amount"
+                                    stroke="#8884d8"
+                                    activeDot={{ r: 5 }}
+                                />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </>
+                    :
+                    <>
+                        <h1 className="h-full flex justify-center items-center text-2xl">🙁 No chart</h1>
+                    </>
+            }
         </div>
     );
 };
