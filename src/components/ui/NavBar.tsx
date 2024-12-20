@@ -41,8 +41,8 @@ const NavBar = () => {
             draggable="false"
             src="/images/logo.png"
             alt=""
-            width={500}
-            height={500}
+            width={220}
+            height={57}
             className="w-[220px] h-auto"
           />
         </Link>
