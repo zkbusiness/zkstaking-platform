@@ -10,6 +10,7 @@ import Button from "@components/ui/Button";
 import { CountUp } from "@components/ui/CountUp";
 import CoinSpinner from "@components/ui/CoinSpinner";
 import LineChartStakeChange from "@components/Dashboard/LineChartStakeChange";
+import numeral from "numeral";
 
 const Dashboard: NextPage = () => {
     const {
@@ -147,7 +148,11 @@ const Dashboard: NextPage = () => {
                         >
                             <span className="w-full">Reward</span>
                             <span className=" w-full">
-                                <CountUp format="0,0.00000" end={rewards} />
+                                {
+                                    rewards > 0.000001
+                                        ? numeral(rewards).format("0,0.00000")
+                                        : 0
+                                }
                             </span>
                         </Button>
                         <Button
@@ -192,8 +197,8 @@ const Dashboard: NextPage = () => {
                         >
                             <div
                                 className={`${isMobile
-                                        ? "w-full"
-                                        : "md:w-fit flex justify-center"
+                                    ? "w-full"
+                                    : "md:w-fit flex justify-center"
                                     }`}
                             >
                                 <div className="flex mt-4">
@@ -203,8 +208,8 @@ const Dashboard: NextPage = () => {
                                         </div>
                                         <div
                                             className={`${isMobile
-                                                    ? " justify-start items-center gap-4"
-                                                    : ""
+                                                ? " justify-start items-center gap-4"
+                                                : ""
                                                 } flex flex-col`}
                                         >
                                             <div className="">
