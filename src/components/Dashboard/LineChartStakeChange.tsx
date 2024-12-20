@@ -9,6 +9,8 @@ import {
     YAxis,
     ResponsiveContainer,
     Tooltip,
+    Legend,
+
 } from "recharts";
 
 const options = [
@@ -19,16 +21,82 @@ const options = [
     { value: "all", label: "ALL" },
 ];
 
-interface FetchedData {
-    time: string;
-    amount: number;
+interface ActivedLineType {
+    max: boolean;
+    min: boolean;
+    avg: boolean;
 }
+
+interface DataPoint {
+    time: string;
+    min?: number; // Make min, max, and avg optional
+    max?: number;
+    avg?: number;
+}
+
+type LineKeys = keyof ActivedLineType;
+
+
 
 const LineChartStakeChange = () => {
     const isMobile = useScreenWidth(1200);
     const [domainStart, setDomainStart] = useState(0);
     const [chartData, setChartData] = useState<any>([]);
+    const [data, setData] = useState<any>([]);
     const [view, setView] = useState("week");
+    const [activeLines, setActiveLines] = useState<ActivedLineType>({ min: false, avg: true, max: false })
+
+    const handleLegendClick = (dataKey: string) => {
+        setActiveLines((prev) => ({
+            ...prev,
+            [dataKey]: !prev[dataKey as LineKeys],
+        }));
+    };
+    const CustomLegend = ({ onClick }: { onClick: Function }) => {
+        return (
+            <ul className="recharts-legend flex  justify-self-center gap-2 items-center">
+                {["min", "avg", "max"]?.map((value, index) => {
+                    return (
+                        <li
+                            key={`item-${index}`}
+                            onClick={() => onClick(value)}
+                            className={`flex select-none cursor-pointer items-center py-2 px-4`}
+                            style={{
+                                color: value === "min" ? "#FFC107" : value === "avg" ? "#4CAF50" : "#1E88E5",
+                                opacity: activeLines[value as LineKeys] ? "1" : "0.5"
+                            }}
+                        >
+                            <span >&#8226;</span> &nbsp;{value.toLocaleUpperCase()}
+                        </li>
+                    );
+                })}
+            </ul>
+        );
+    };
+
+    const setCharDataByTypes = (data: any) => {
+        let returnValue = data.map(({ time, min, max, avg }: DataPoint) => {
+            let temp: DataPoint = { time, min, max, avg }
+            if (!activeLines.min) delete temp.min
+            if (!activeLines.avg) delete temp.avg
+            if (!activeLines.max) delete temp.max
+            return temp
+        })
+        const allValues = returnValue.flatMap((item: any) => {
+            // Create an array with existing numeric values
+            return [item?.min, item?.max, item?.avg].filter(value => value !== undefined);
+        });
+
+        // Find the smallest value
+        const smallestValue = Math.min(...allValues);
+        setDomainStart(smallestValue);
+        setChartData(returnValue)
+
+    }
+
+    useEffect(() => {
+        setCharDataByTypes(data)
+    }, [activeLines, data])
 
     useEffect(() => {
         fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/history/${view}`, {
@@ -39,10 +107,7 @@ const LineChartStakeChange = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                setChartData(data);
-                setDomainStart(
-                    [...data].sort((a, b) => a.amount - b.amount)[0].amount
-                );
+                setData(data);
             })
             .catch((err) => { });
     }, [view]);
@@ -62,7 +127,7 @@ const LineChartStakeChange = () => {
                 chartData.length > 0 ?
                     <>
 
-                        <ResponsiveContainer width={"100%"} height={450}>
+                        <ResponsiveContainer width={"100%"} height={500}>
                             <LineChart
                                 className={isMobile ? " -translate-x-4" : ""}
                                 height={500}
@@ -93,11 +158,23 @@ const LineChartStakeChange = () => {
                                         return <>{formatNumber(value, "0,0")}</>;
                                     }}
                                 />
-                                {/* <Legend /> */}
+                                <Legend content={<CustomLegend onClick={handleLegendClick} />} />
                                 <Line
                                     type="monotone"
-                                    dataKey="amount"
-                                    stroke="#8884d8"
+                                    dataKey="min"
+                                    stroke="#FFC107"
+                                    activeDot={{ r: 5 }}
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="avg"
+                                    stroke="#4CAF50"
+                                    activeDot={{ r: 5 }}
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="max"
+                                    stroke="#1E88E5"
                                     activeDot={{ r: 5 }}
                                 />
                             </LineChart>
