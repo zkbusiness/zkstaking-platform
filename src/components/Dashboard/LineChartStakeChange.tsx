@@ -49,18 +49,19 @@ const LineChartStakeChange = () => {
 
     return (
         <div className="w-full relative">
+            <Select
+                options={options}
+                className=" absolute right-0 w-20 top-0"
+                style={{
+                    zIndex: "10000",
+                }}
+                defaultValue="week"
+                onChange={(value) => setView(value)}
+            />
             {
                 chartData.length > 0 ?
                     <>
-                        <Select
-                            options={options}
-                            className=" absolute right-0 w-20 top-0"
-                            style={{
-                                zIndex: "10000",
-                            }}
-                            defaultValue="week"
-                            onChange={(value) => setView(value)}
-                        />
+
                         <ResponsiveContainer width={"100%"} height={450}>
                             <LineChart
                                 className={isMobile ? " -translate-x-4" : ""}
