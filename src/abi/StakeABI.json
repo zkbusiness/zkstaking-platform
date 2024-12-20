@@ -15,18 +15,6 @@
       },
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "fixedAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "dynamicAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
         "internalType": "string",
         "name": "eventType",
         "type": "string"
@@ -36,11 +24,17 @@
         "internalType": "uint32",
         "name": "time",
         "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
     "name": "ClaimReward",
     "type": "event",
-    "signature": "0xcd231c8fa998a58d2692d9a3bbb80662f8577bbd6a4ca49c6089bf34d20117f2"
+    "signature": "0xc404c58a057c18fb95f736260632cf8266fd191d66a7a382ba4b05c145e39811"
   },
   {
     "anonymous": false,
