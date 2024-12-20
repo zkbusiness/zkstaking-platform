@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="preload" as="image" href="/images/logo.png" />
+        <link rel="preload" as="image" href="https://zksyncstaking.com/images/logo.png" />
 
         <meta name="application-name" content="ZkSyncStaking" />
         <meta name="generator" content="ZkSyncStaking" />
@@ -56,7 +56,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Zk Sync Staking" />
         <meta name="twitter:image" content="https://zksyncstaking.com/images/banner.jpg" />
-        <link rel="icon" href="/images/favicon.ico" type="image/x-icon" sizes="16x16" />
+        <link rel="icon" href="https://zksyncstaking.com/favicon.ico" type="image/x-icon" sizes="16x16" />
+
 
       </Head>
       <WagmiProvider config={config}>
