@@ -256,6 +256,13 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
         setTotalStaked(totalStaked ? totalStaked : 0);
         setTotalStaker(totalStaker ? totalStaker : 0);
         setTotalTx(totalTx ? totalTx : 0);
+
+        setStakeInfoValues((prevState) => ({
+            ...prevState,
+            totalStaked: Number(totalStaked) / 10 ** APP_ENV.ZK_DECIMAL,
+            totalStaker: Number(totalStaker),
+            totalTx: Number(totalTx),
+        }));
     }
 
     const calcRewards = () => {
@@ -286,8 +293,11 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             switchChain({ chainId: APP_ENV.ENABLE_TESTNETS ? zkSyncSepoliaTestnet.id : zkSync.id });
             refresh();
         }
-        refreshWithoutConnect();
     }, [address, chainId, accountStaus]);
+
+    useEffect(() => {
+        refreshWithoutConnect();
+    }, [])
 
     useEffect(() => {
         setStakeInfoValues((prevState) => ({
@@ -316,10 +326,6 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
                     stakeShare: stakedAmount / decimal,
                     totalStakedOfAddress:
                         Number(totalStakedOfAddress) / 10 ** APP_ENV.ZK_DECIMAL,
-                    totalStaked: Number(totalStaked) / 10 ** APP_ENV.ZK_DECIMAL,
-
-                    totalStaker: Number(totalStaker),
-                    totalTx: Number(totalTx),
                     rewards,
                     dailyReward:
                         (stakedAmount * rate) / Number(365 * 24 * 60 * 60) / decimal,
