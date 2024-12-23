@@ -25,8 +25,8 @@ const footerColumns: FooterColumn[] = [
     title: "Bridges & DEXs",
     links: [
       { label: "zkswap.finance", href: "https://www.zkswap.finance/bridge" },
-      { label: "zksync.io", href: "https://portal.zksync.io/bridge" },
       { label: "Symbiosis", href: "https://app.symbiosis.finance/swap?_gl=1%2Aa44kca%2A_ga%2AMTEyODM4MDAxMC4xNzM0MzU0ODE4%2A_ga_YKCPZTG9X6%2AMTczNDM1NDgxOC4xLjAuMTczNDM1NDgxOC42MC4wLjA.&amountIn&chainIn=Ethereum&chainOut=ZkSync%20Era&tokenIn=ETH&tokenOut=ETH" },
+      { label: "zksync.io", href: "https://portal.zksync.io/bridge" },
       { label: "Jumper Exchange", href: "https://jumper.exchange/?fromChain=1&fromToken=0x0000000000000000000000000000000000000000&toChain=324&toToken=0x0000000000000000000000000000000000000000" },
     ],
   },
