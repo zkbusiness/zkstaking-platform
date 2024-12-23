@@ -129,15 +129,12 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     });
     const [stakeInfo, setStakeInfo] = useState();
     const [allowance, setAllowance] = useState();
-    const [totalStaked, setTotalStaked] = useState();
-    const [totalStaker, setTotalStaker] = useState();
-    const [totalTx, setTotalTx] = useState();
     const [totalStakedOfAddress, setTotalStakedOfAddress] = useState();
 
     const approve = (amount: number) => {
         setCurrentTx("approve");
         setTxStatus("");
-        const largeNumber = BigInt(amount * 1000000) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
+        const largeNumber = BigInt(amount * 100000) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
         const largeNumberString = largeNumber.toString();
         writeContract({
             abi: ZK_TOKEN_ABI as any,
@@ -253,9 +250,6 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
                 args: [],
             }),
         ]);
-        setTotalStaked(totalStaked ? totalStaked : 0);
-        setTotalStaker(totalStaker ? totalStaker : 0);
-        setTotalTx(totalTx ? totalTx : 0);
 
         setStakeInfoValues((prevState) => ({
             ...prevState,
