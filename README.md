@@ -1,4 +1,4 @@
-# ZkSyncStaking Platform
+# ZK ERA BUSINESS Platform
 
 This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](/packages/create-rainbowkit).
 
@@ -14,4 +14,4 @@ Open [http://localhost:4100](http://localhost:4100) with your browser to see the
 
 ### Continue earning with staking
 
-<img align="center" style="display:flex" alt="zksyncstaking" src="https://github.com/zkbusiness/zkstaking-platform/blob/dev/public/images/full-screen.png?raw=true"/>
+<img align="center" style="display:flex" alt="zkbusiness" src="https://github.com/zkbusiness/zkstaking-platform/blob/dev/public/images/full-screen.png?raw=true"/>

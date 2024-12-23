@@ -5,9 +5,9 @@ const FaqSection = () => {
   const faqs = [
     {
       icon: "/images/faq.webp",
-      title: "What is zksyncstaking?",
-      description: "ZK staking is the process of locking a certain...",
-      content: `ZK staking is the process of locking a certain amount of cryptocurrency in your wallet to support the operation of the Zksync Era blockchain network. In return for staking your assets, you can receive rewards in ZK tokens.`,
+      title: "What is ZkBusiness staking?",
+      description: "ZkBusiness staking is the process of locking a certain...",
+      content: `ZkBusiness staking is the process of locking a certain amount of cryptocurrency in your wallet to support the operation of the Zksync Era blockchain network. In return for staking your assets, you can receive rewards in ZK tokens.`,
     },
     {
       icon: "/images/faq.webp",
@@ -25,7 +25,7 @@ const FaqSection = () => {
     {
       icon: "/images/faq.webp",
       title: "What cryptocurrencies can I stake on the platform?",
-      description: "For ZKsync token",
+      description: "For ZK token",
       content: `Currently, only Zksync tokens are supported.`,
     },
     {
@@ -66,7 +66,7 @@ const FaqSection = () => {
       title: "Who can I contact for support?",
       description:
         "Our support team is available to help you with any questions...",
-      content: `Our support team is available to help you with any questions or concerns. Please contact zksyncstaking@gmail.com or https://t.me/zksyncstaking`,
+      content: `Our support team is available to help you with any questions or concerns. Please contact support@zkbusiness.org or https://t.me/zkbusiness_support`,
     },
     {
       icon: "/images/faq.webp",

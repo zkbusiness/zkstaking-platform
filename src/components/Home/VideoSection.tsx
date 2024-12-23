@@ -39,7 +39,7 @@ const VideoPlayer = ({ className = "" }: { className?: string }) => {
                 muted
                 loop={false} // Disable loop, since we handle restarting manually
             >
-                <source src="/images/hero.mp4" type="video/mp4" />
+                <source src="/images/main.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <Image

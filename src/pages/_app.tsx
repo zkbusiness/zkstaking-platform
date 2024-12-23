@@ -31,32 +31,32 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div>
       <Head>
-        <title>ZKsync Staking</title>
+        <title>ZK BUSINESS</title>
         <meta
-          content="The Secured staking platform for ZK"
+          content="The Secured staking platform for Zk Business"
           name="description"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="preload" as="image" href="https://zksyncstaking.com/images/logo.png" />
+        <link rel="preload" as="image" href="https://zkbusiness.org/images/logo.png" />
 
-        <meta name="application-name" content="ZkSyncStaking" />
-        <meta name="generator" content="ZkSyncStaking" />
-        <meta name="keywords" content="ZkSync, ZkStaking, Staking, zk, ZK, ZkSyncStaking, zksyncstaking" />
+        <meta name="application-name" content="ZkBusiness" />
+        <meta name="generator" content="ZkBusiness" />
+        <meta name="keywords" content="ZkSync, ZkStaking, zkstake, Staking, zk, ZK, ZkBusiness, zkbusiness" />
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
-        <meta property="og:title" content="Zk Sync Staking" />
-        <meta property="og:url" content="https://zksyncstaking.com/" />
-        <meta property="og:site_name" content="Zk Sync Staking" />
+        <meta property="og:title" content="Zk Business" />
+        <meta property="og:url" content="https://zkbusiness.org/" />
+        <meta property="og:site_name" content="Zk Business" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:image" content="https://zksyncstaking.com/images/banner.jpg" />
+        <meta property="og:image" content="https://zkbusiness.org/images/banner.jpg" />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zk Sync Staking" />
-        <meta name="twitter:image" content="https://zksyncstaking.com/images/banner.jpg" />
-        <link rel="icon" href="https://zksyncstaking.com/favicon.ico" type="image/x-icon" sizes="16x16" />
+        <meta name="twitter:title" content="Zk Business" />
+        <meta name="twitter:image" content="https://zkbusiness.org/images/banner.jpg" />
+        <link rel="icon" href="https://zkbusiness.org/favicon.ico" type="image/x-icon" sizes="16x16" />
 
 
       </Head>

@@ -19,7 +19,7 @@ const Home = () => {
                     The Staking Platform
                 </h1>
                 <h2 className="text-2xl leading-[1.4] w-full max-w-[600px]">
-                    ZKsync staking platform is an secured investor
+                    ZK BUSINESS staking platform is an secured investor
                     <br className="hidden sm:block" />
                     platform, secured by contract.
                 </h2>

@@ -18,17 +18,17 @@ export const Sections = () => {
                 </div>
                 <div className="space-y-4 md:space-y-6 md:max-w-[50%]">
                     <h3 className="text-[#4075FF]  tracking-wider text-lg md:text-xl font-bold">
-                        ZK SYNC STAKING
+                        ZK BUSINESS
                     </h3>
                     <h2
                         className={`text-3xl xs:text-5xl font-bold max-w-[500px] text-white`}
                     >
-                        A ZkSyncStaking platform...
+                        A ZkBusiness Staking platform...
                     </h2>
 
                     <p className="text-lg md:text-xl flex flex-col mt-10 space-y-16 ">
-                        ZK Sync Staking focuses on security with stringent measures in place
-                        to keep user funds safe. On ZkSyncStaking, the competitive nature of
+                        Zk Business Staking focuses on security with stringent measures in place
+                        to keep user funds safe. On ZkBusiness, the competitive nature of
                         staking rewards, along with very low fees, creates a high appeal for
                         many investors.
                     </p>
@@ -95,9 +95,9 @@ export const Sections = () => {
                     </h2>
 
                     <p className="text-lg md:text-xl flex flex-col mt-10 space-y-16 ">
-                        zksyncstaking.com is built to provide a positive experience for all
+                        zkbusiness.org.com is built to provide a positive experience for all
                         users staking through the website or application.
-                        zksyncstaking.com’s user- friendly design focuses on simplicity,
+                        zkbusiness.org’s user- friendly design focuses on simplicity,
                         accessibility, and intuitiveness at its core, ensuring users can
                         navigate seamlessly and stake easily.
                     </p>
