@@ -16,7 +16,7 @@ interface VideoBackgroundWrapperProps {
 }
 
 const VideoBackgroundWrapper: React.FC<VideoBackgroundWrapperProps> = ({
-  videoSrc = "/images/hero.mp4",
+  videoSrc = "/images/main.mp4",
   children,
   className = "",
   horizontalAlign = "center",
