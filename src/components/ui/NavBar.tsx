@@ -32,9 +32,8 @@ const NavBar = () => {
       }}
     >
       <div
-        className={`flex h-[86px]  px-4 md:px-8 w-full items-center justify-between text-white  ${
-          visibleMenu ? "bg-foreground" : ""
-        } `}
+        className={`flex h-[86px]  px-4 md:px-8 w-full items-center justify-between text-white  ${visibleMenu ? "bg-foreground" : ""
+          } `}
       >
         <Link href={"/"}>
           <Image
