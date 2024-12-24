@@ -282,6 +282,20 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
         }
     };
 
+    const updatePrice = async () => {
+        try {
+            const data = await fetch(
+                `https://api.geckoterminal.com/api/v2/networks/zksync/tokens/${process.env.NEXT_PUBLIC_ZK_ADDRESS_MAINNET}`
+            );
+            const priceInfo = await data.json();
+            const price = priceInfo.data.attributes.price_usd;
+            setStakeInfoValues((prev) => ({
+                ...prev,
+                zkPrice: price,
+            }));
+        } catch (e) { }
+    }
+
     useEffect(() => {
         if (address && accountStaus === "connected") {
             switchChain({ chainId: APP_ENV.ENABLE_TESTNETS ? zkSyncSepoliaTestnet.id : zkSync.id });
@@ -354,19 +368,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     }, [count]);
 
     useEffect(() => {
-        (async () => {
-            try {
-                const data = await fetch(
-                    `https://api.geckoterminal.com/api/v2/networks/zksync/tokens/${process.env.NEXT_PUBLIC_ZK_ADDRESS_MAINNET}`
-                );
-                const priceInfo = await data.json();
-                const price = priceInfo.data.attributes.price_usd;
-                setStakeInfoValues((prev) => ({
-                    ...prev,
-                    zkPrice: price,
-                }));
-            } catch (e) { }
-        })();
+        setInterval(updatePrice, 30000)
     }, []);
 
     return (
