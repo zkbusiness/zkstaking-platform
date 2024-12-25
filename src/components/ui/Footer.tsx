@@ -14,11 +14,12 @@ const footerColumns: FooterColumn[] = [
     title: "Offcial links",
     links: [
       { label: "GitHub", href: "https://github.com/zkbusiness/" },
-      { label: "Smart Contract", href: "#" },
-      { label: "Documentation", href: "#" },
+      { label: "Documentation", href: "https://docs.zkbusiness.org" },
       { label: "Audit Whitepaper", href: "#" },
+      { label: "Certificate", href: "#" },
       { label: "Medium", href: "#" },
       { label: "Reddit", href: "#" },
+      { label: "Trustpilot", href: "#" },
     ],
   },
   {
