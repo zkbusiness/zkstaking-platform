@@ -34,7 +34,7 @@ const footerColumns: FooterColumn[] = [
   {
     title: "COMMUNITY",
     links: [
-      { label: "Discord", href: "#" },
+      { label: "Discord", href: "https://discord.gg/sHH4RZes" },
       { label: "X / Twitter", href: "#" },
       { label: "Telegram", href: "#" },
       { label: "Hey", href: "#" },
