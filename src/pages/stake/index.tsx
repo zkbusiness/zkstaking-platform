@@ -196,7 +196,7 @@ const StakeLayout: NextPage = () => {
                                         <div className=" text-xl font-bold ">
                                             Staked :&nbsp;
                                             <span className=" font-normal">
-                                                <CountUp format="0,0" end={stakeShare} />
+                                                <CountUp format="0,0.000" end={stakeShare} />
                                             </span>
                                             &nbsp; ZK
                                         </div>
