@@ -213,7 +213,7 @@ const Dashboard: NextPage = () => {
                                                 } flex flex-col`}
                                         >
                                             <div className="">
-                                                <div className="flex  items-center sm:flex-row text-lg md:text-xl  sm:items-center gap-2">
+                                                <div className="flex items-center sm:flex-row text-lg md:text-xl  sm:items-center gap-2">
                                                     <div
                                                         style={{
                                                             width: "10px",
@@ -226,7 +226,7 @@ const Dashboard: NextPage = () => {
                                                     ></div>
                                                     <div className="">TVL</div>
                                                 </div>
-                                                <div className="mt-4 sm:mt-0 flex  items-center sm:flex-row text-lg md:text-xl  sm:items-center gap-2">
+                                                <div className="mt-4 sm:mt-0 flex items-center sm:flex-row text-lg md:text-xl  sm:items-center gap-2">
                                                     <div
                                                         style={{
                                                             width: "10px",
