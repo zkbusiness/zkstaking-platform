@@ -12,7 +12,9 @@ import {
     useWriteContract,
 } from "wagmi";
 
+import ZK_TOKEN_ABI_MAIN from "../abi/ZkTokenABI_MAIN.json";
 import ZK_TOKEN_ABI from "../abi/ZkTokenABI.json";
+import STAKE_CONTRACT_ABI_MAIN from "../abi/StakeABI_MAIN.json";
 import STAKE_CONTRACT_ABI from "../abi/StakeABI.json";
 import {
     APP_ENV,
@@ -120,7 +122,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     const [currentTx, setCurrentTx] = useState("");
     const [txStatus, setTxStatus] = useState("");
     const token = getZKTokenAddress(chainId);
-    const contract = getStakingContractAddress(chainId ? chainId : 300);
+    const contract = getStakingContractAddress(chainId ? chainId : APP_ENV.ENABLE_TESTNETS ? 300 : 324);
 
     const balance: UseBalanceReturnType = useBalance({
         address,
@@ -137,7 +139,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
         const largeNumber = BigInt(amount * 100000) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
         const largeNumberString = largeNumber.toString();
         writeContract({
-            abi: ZK_TOKEN_ABI as any,
+            abi: APP_ENV.ENABLE_TESTNETS ? ZK_TOKEN_ABI as any : ZK_TOKEN_ABI_MAIN as any,
             address: token,
             functionName: "approve",
             args: [contract, largeNumberString],
@@ -151,7 +153,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
         const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
         const largeNumberString = largeNumber.toString();
         writeContract({
-            abi: STAKE_CONTRACT_ABI as any,
+            abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
             address: contract,
             functionName: "stake",
             args: [largeNumberString],
@@ -165,7 +167,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
         const largeNumber = BigInt(amount) * BigInt(10 ** APP_ENV.ZK_DECIMAL);
         const largeNumberString = largeNumber.toString();
         writeContract({
-            abi: STAKE_CONTRACT_ABI as any,
+            abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
             address: contract,
             functionName: "unstake",
             args: [largeNumberString],
@@ -177,7 +179,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
         setCurrentTx("claim");
         setTxStatus("");
         writeContract({
-            abi: STAKE_CONTRACT_ABI as any,
+            abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
             address: contract,
             functionName: "claim",
             args: [],
@@ -197,19 +199,19 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
                 totalStakedOfAddress,
             ]: any = await Promise.all([
                 publicClient.readContract({
-                    abi: STAKE_CONTRACT_ABI as any,
+                    abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
                     address: contract,
                     functionName: "getStakeInfo",
                     args: [address || "0x0"],
                 }),
                 publicClient.readContract({
-                    abi: ZK_TOKEN_ABI as any,
+                    abi: APP_ENV.ENABLE_TESTNETS ? ZK_TOKEN_ABI as any : ZK_TOKEN_ABI_MAIN as any,
                     address: token,
                     functionName: "allowance",
                     args: [address || "0x0", contract],
                 }),
                 publicClient.readContract({
-                    abi: STAKE_CONTRACT_ABI as any,
+                    abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
                     address: contract,
                     functionName: "getTokensStaked",
                     args: [address || "0x0"],
@@ -232,19 +234,19 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
             totalTx
         ]: any = await Promise.all([
             publicClient.readContract({
-                abi: STAKE_CONTRACT_ABI as any,
+                abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
                 address: contract,
                 functionName: "getTotalStaked",
                 args: [],
             }),
             publicClient.readContract({
-                abi: STAKE_CONTRACT_ABI as any,
+                abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
                 address: contract,
                 functionName: "getTotalStakedUser",
                 args: [],
             }),
             publicClient.readContract({
-                abi: STAKE_CONTRACT_ABI as any,
+                abi: APP_ENV.ENABLE_TESTNETS ? STAKE_CONTRACT_ABI as any : STAKE_CONTRACT_ABI_MAIN as any,
                 address: contract,
                 functionName: "getTotalTx",
                 args: [],
