@@ -122,7 +122,7 @@ export const StakeContextProvider = (props: { children: React.ReactNode }) => {
     const [currentTx, setCurrentTx] = useState("");
     const [txStatus, setTxStatus] = useState("");
     const token = getZKTokenAddress(chainId);
-    const contract = getStakingContractAddress(chainId ? chainId : APP_ENV.ENABLE_TESTNETS ? 300 : 324);
+    const contract = getStakingContractAddress(APP_ENV.ENABLE_TESTNETS ? 300 : 324);
 
     const balance: UseBalanceReturnType = useBalance({
         address,
