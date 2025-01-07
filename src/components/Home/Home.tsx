@@ -24,16 +24,16 @@ const Home = () => {
                     platform, secured by contract.
                 </h2>
                 <div className="flex flex-col sm:flex-row gap-4 my-6">
-                    <Button type="primary" className="w-full sm:w-auto" rounded size="lg">
-                        <Link href="/stake">
+                    <Link href="/stake">
+                        <Button type="primary" className="w-full sm:w-auto" rounded size="lg">
                             Start Staking
-                        </Link>
-                    </Button>
-                    <Button className="w-full sm:w-auto" rounded size="lg">
-                        <Link href="/audit/whitepaper.pdf">
+                        </Button>
+                    </Link>
+                    <Link href="/audit/whitepaper.pdf">
+                        <Button className="w-full sm:w-auto" rounded size="lg">
                             Audit Whitepaper
-                        </Link>
-                    </Button>
+                        </Button>
+                    </Link>
                 </div>
             </div>
             <div className="w-full bg-[#0000001e]  backdrop-blur-3xl  rounded-[40px] ">

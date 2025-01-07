@@ -12,8 +12,8 @@ export const Sections = () => {
                         className="w-64 m-auto rounded-md aspect-square"
                         src={"/images/zk-coin-front.png"}
                         alt={"security"}
-                        width={300}
-                        height={300}
+                        width={256}
+                        height={256}
                     />
                 </div>
                 <div className="space-y-4 md:space-y-6 md:max-w-[50%]">
@@ -45,7 +45,7 @@ export const Sections = () => {
                         src={"/images/staking.png"}
                         alt={"APY"}
                         width={400}
-                        height={300}
+                        height={284}
                     />
                 </div>
 
@@ -81,7 +81,7 @@ export const Sections = () => {
                         src={"/images/userfriendly.png"}
                         alt={"User Friendly"}
                         width={400}
-                        height={300}
+                        height={400}
                     />
                 </div>
                 <div className={`space-y-4 md:space-y-6 md:max-w-[50%]`}>

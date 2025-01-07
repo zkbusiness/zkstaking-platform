@@ -39,7 +39,7 @@ const NavBar = () => {
                     <Image
                         draggable="false"
                         src="/images/logo.png"
-                        alt=""
+                        alt="Go to home"
                         width={220}
                         height={57}
                         className="w-[220px] h-auto"
@@ -66,13 +66,13 @@ const NavBar = () => {
                         ))}
                     </div>
                     <div className=" flex items-center gap-2">
-                        <Button type="dark" size="sm" rounded>
+                        <Button type="dark" size="sm" aria-label="Telegram" rounded>
                             <FaTelegramPlane className="  text-2xl" />
                         </Button>
-                        <Button type="dark" size="sm" rounded>
+                        <Button type="dark" size="sm" aria-label="Discord" rounded>
                             <FaDiscord className="  text-2xl" />
                         </Button>
-                        <Button type="dark" size="sm" rounded>
+                        <Button type="dark" size="sm" aria-label="Twitter" rounded>
                             <BsTwitterX className="  text-2xl" />
                         </Button>
 
@@ -81,6 +81,7 @@ const NavBar = () => {
                 </div>
 
                 <Button
+                    aria-label="Menu"
                     onClick={() => setVisibleMenu((prev) => !prev)}
                     type="dark"
                     className="lg:hidden block"
@@ -104,7 +105,7 @@ const NavBar = () => {
                             className="flex items-center"
                             target={link.target}
                         >
-                            <Button type="dark" className="w-full justify-center" rounded size="lg">
+                            <Button type="dark" aria-label={link.name} className="w-full justify-center" rounded size="lg">
                                 {link.name}
 
                                 {link?.target === "blank" && (
@@ -118,6 +119,7 @@ const NavBar = () => {
                     ))}
                     <div className=" flex items-center gap-2 justify-center">
                         <Button
+                            aria-label="Telegram"
                             type="dark"
                             size="sm"
                             rounded
@@ -126,6 +128,7 @@ const NavBar = () => {
                             <FaTelegramPlane />
                         </Button>
                         <Button
+                            aria-label="Discord"
                             type="dark"
                             size="sm"
                             rounded
@@ -134,6 +137,7 @@ const NavBar = () => {
                             <FaDiscord />
                         </Button>
                         <Button
+                            aria-label="Twitter"
                             type="dark"
                             size="sm"
                             rounded

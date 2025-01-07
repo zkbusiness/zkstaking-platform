@@ -46,9 +46,9 @@ const VideoPlayer = ({ className = "" }: { className?: string }) => {
                 draggable="false"
                 src={"/images/hero-mobile.webp"}
                 alt="hero-mobile"
-                className=" block md:hidden m-36 "
-                width={360}
-                height={500}
+                className=" block md:hidden m-auto mt-32"
+                width={366}
+                height={212}
             />
             <div
                 className="h-28  absolute bottom-32  w-full hidden xl:block"

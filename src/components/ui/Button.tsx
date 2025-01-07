@@ -56,11 +56,13 @@ const Button = ({
   ghost = false, // Default to non-ghost (background style).
   rounded = false, // Default to standard rounded corners.
   shadow = "none",
+  ...props
 }: Props) => {
   // Map for background-based styles (used when ghost is false).
 
   return (
     <button
+      {...props}
       onClick={onClick}
       className={cn(
         "h-auto flex items-center justify-center shadow-[#00000054]",
