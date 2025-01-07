@@ -14,9 +14,9 @@ const footerColumns: FooterColumn[] = [
         title: "Offcial links",
         links: [
             { label: "GitHub", href: "https://github.com/zkbusiness" },
-            { label: "Documentation", href: "https://docs.zkbusiness.org" },
-            { label: "Audit Whitepaper", href: "audit/ZkBusiness Audit Report.pdf" },
-            { label: "Certificate", href: "audit/ZkBusiness Audit Certificate.pdf" },
+            { label: "Documentation", href: "https://docs.zkbusiness.org/staking" },
+            { label: "Audit Whitepaper", href: "https://zkbusiness.org/audit/ZkBusiness Audit Report.pdf" },
+            { label: "Certificate", href: "https://zkbusiness.org/audit/ZkBusiness Audit Certificate.pdf" },
             { label: "Medium", href: "https://zkbusiness.medium.com" },
             { label: "Reddit", href: "https://www.reddit.com/r/zkbusiness" },
             { label: "Trustpilot", href: "https://www.trustpilot.com/review/zkbusiness.org" },
