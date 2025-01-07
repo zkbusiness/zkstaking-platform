@@ -17,7 +17,7 @@
 /src/config/env.config.ts
 /src/config/links.config.ts
 /src/config/wagmi.config.ts
-
+/src/contexts
 # production
 /build
 
