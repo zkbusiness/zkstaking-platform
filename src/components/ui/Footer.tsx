@@ -13,13 +13,13 @@ const footerColumns: FooterColumn[] = [
     {
         title: "Offcial links",
         links: [
-            { label: "GitHub", href: "https://github.com/zkbusiness/" },
+            { label: "GitHub", href: "https://github.com/zkbusiness" },
             { label: "Documentation", href: "https://docs.zkbusiness.org" },
             { label: "Audit Whitepaper", href: "audit/ZkBusiness Audit Report.pdf" },
             { label: "Certificate", href: "audit/ZkBusiness Audit Certificate.pdf" },
-            { label: "Medium", href: "https://zkbusiness.medium.com/" },
-            { label: "Reddit", href: "#" },
-            { label: "Trustpilot", href: "#" },
+            { label: "Medium", href: "https://zkbusiness.medium.com" },
+            { label: "Reddit", href: "https://www.reddit.com/r/zkbusiness" },
+            { label: "Trustpilot", href: "https://www.trustpilot.com/review/zkbusiness.org" },
         ],
     },
     {
@@ -35,8 +35,8 @@ const footerColumns: FooterColumn[] = [
         title: "COMMUNITY",
         links: [
             { label: "Discord", href: "https://discord.gg/sHH4RZes" },
-            { label: "X / Twitter", href: "#" },
-            { label: "Telegram", href: "https://t.me/+8_UnLONQnogyOGYx" },
+            { label: "X / Twitter", href: "https://x.com/zkbusinessland" },
+            { label: "Telegram", href: "https://t.me/zkBusinessOffcial" },
             { label: "Hey", href: "https://hey.xyz/u/zksyncstaking" },
         ],
     },
