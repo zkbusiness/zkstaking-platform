@@ -79,7 +79,7 @@ export default function Footer() {
                     <Image
                         draggable="false"
                         src="/images/logo.png"
-                        alt=""
+                        alt="Go to home"
                         width={500}
                         height={500}
                         className="w-[220px] h-auto"

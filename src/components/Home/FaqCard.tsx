@@ -33,14 +33,14 @@ const FaqCard = ({
                     src={icon}
                     draggable="false"
                     alt=""
-                    width={100}
-                    height={100}
+                    width={56}
+                    height={56}
                     className="w-14 h-14 aspect-square rounded-full hidden sm:block"
                 />
                 <div>
-                    <h4 className={`xs:text-2xl  text-xl font-semibold text-white`}>
+                    <h3 className={`xs:text-2xl  text-xl font-semibold text-white`}>
                         {title}
-                    </h4>
+                    </h3>
                     <div className=" text-gray-300">{description}</div>
                 </div>
                 <div className="w-4"></div>
