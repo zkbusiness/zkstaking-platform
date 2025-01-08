@@ -18,7 +18,6 @@ const footerColumns: FooterColumn[] = [
             { label: "Audit Whitepaper", href: "https://zkbusiness.org/audit/ZkBusiness Audit Report.pdf" },
             { label: "Certificate", href: "https://zkbusiness.org/audit/ZkBusiness Audit Certificate.pdf" },
             { label: "Medium", href: "https://zkbusiness.medium.com" },
-            { label: "Reddit", href: "https://www.reddit.com/r/zkbusiness" },
             { label: "Trustpilot", href: "https://www.trustpilot.com/review/zkbusiness.org" },
         ],
     },
