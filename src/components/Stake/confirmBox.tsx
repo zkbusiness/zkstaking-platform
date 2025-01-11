@@ -190,7 +190,7 @@ export const ConfirmBox = ({
         let apr = 8.7;
         if (aprRate)
             return aprRate;
-        if (totalStaker <= 3)
+        if (totalStaker <= 100)
             apr = 13.5;
         return apr;
     }
