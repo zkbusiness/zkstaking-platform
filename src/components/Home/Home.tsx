@@ -19,7 +19,7 @@ const Home = () => {
                     The Staking Platform
                 </h1>
                 <h2 className="text-2xl leading-[1.4] w-full max-w-[600px]">
-                    Zk Business staking platform is an secured investor
+                    Zk Business staking platform is a secured investor&nbsp;
                     <br className="hidden sm:block" />
                     platform, secured by contract.
                 </h2>
@@ -42,7 +42,7 @@ const Home = () => {
                         { label: "TRANSACTIONS", value: <CountUp end={totalTx} /> },
                         { label: "STAKERS", value: <CountUp end={totalStaker} /> },
                         { label: "STAKING TX COST", value: <CountUp end={TX_COST} prefix="~$" /> },
-                        { label: "TVL", value: <CountUp end={totalStaked} prefix="$" /> },
+                        { label: "TVL", value: <CountUp end={totalStaked} format="0,0.00" /> },
                     ].map((item, index) => (
                         <div
                             key={item.label}
