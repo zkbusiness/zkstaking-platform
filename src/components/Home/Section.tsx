@@ -95,11 +95,7 @@ export const Sections = () => {
                     </h2>
 
                     <p className="text-lg md:text-xl flex flex-col mt-10 space-y-16 ">
-                        zkbusiness.org.com is built to provide a positive experience for all
-                        users staking through the website or application.
-                        zkbusiness.org’s user- friendly design focuses on simplicity,
-                        accessibility, and intuitiveness at its core, ensuring users can
-                        navigate seamlessly and stake easily.
+                        ZK Business makes staking effortless. With just a few clicks, connect your wallet, stake your tokens, and start earning rewards instantly. No complexities, no hassles.
                     </p>
                 </div>
             </section>
