@@ -29,7 +29,7 @@ const Home = () => {
                             Start Staking
                         </Button>
                     </Link>
-                    <Link href="/audit/whitepaper.pdf">
+                    <Link href="/audit/ZkBusiness Audit Report.pdf">
                         <Button className="w-full sm:w-auto" rounded size="lg">
                             Audit Whitepaper
                         </Button>
