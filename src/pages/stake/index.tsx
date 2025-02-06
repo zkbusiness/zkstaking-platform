@@ -136,238 +136,238 @@ const StakeLayout: NextPage = () => {
                     className="my-16 max-w-[620px] justify-self-center w-full mt-44 mb-10 p-4"
                     id="stake"
                 >
-                    {isVideoLoaded ? (
-                        <div className="w-full">
-                            <h3 className="  tracking-wider text-sm md:text-xl font-bold  text-center ">
-                                <Link href="/stake">{pageText.toUpperCase()}</Link>
-                            </h3>
-                            <br />
-                            <div className="bg-background backdrop-blur-md rounded-lg md:rounded-[40px] p-4 md:p-10">
-                                <div className="flex flex-col justify-start items-start gap-4">
-                                    <div className="text-lg flex gap-2 justify-center items-center">
-                                        <div className=" font-semibold">Total Staked :</div>
-                                        <div className="">
-                                            <CountUp
-                                                format="0,0"
-                                                end={totalStaked ? totalStaked : 0}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="text-lg flex gap-2 justify-center items-center">
-                                        <div className=" font-semibold">Total User :</div>
-                                        <div className="">
-                                            <CountUp
-                                                format="0,0"
-                                                end={totalStaker ? totalStaker : 0}
-                                            />
-                                        </div>
+                    {/* {isVideoLoaded ? ( */}
+                    <div className="w-full">
+                        <h3 className="  tracking-wider text-sm md:text-xl font-bold  text-center ">
+                            <Link href="/stake">{pageText.toUpperCase()}</Link>
+                        </h3>
+                        <br />
+                        <div className="bg-background backdrop-blur-md rounded-lg md:rounded-[40px] p-4 md:p-10">
+                            <div className="flex flex-col justify-start items-start gap-4">
+                                <div className="text-lg flex gap-2 justify-center items-center">
+                                    <div className=" font-semibold">Total Staked :</div>
+                                    <div className="">
+                                        <CountUp
+                                            format="0,0"
+                                            end={totalStaked ? totalStaked : 0}
+                                        />
                                     </div>
                                 </div>
-                                <div className="flex flex-col xs:flex-row justify-between text-center w-full gap-8 my-4">
-                                    <Button
-                                        shadow="md"
-                                        type={pageText == "Stake" ? "primary" : "default"}
-                                        onClick={() => clickTap("Stake")}
-                                        className={` w-full`}
-                                        rounded
-                                    >
-                                        Stake
-                                    </Button>
-                                    <Button
-                                        shadow="md"
-                                        type={pageText == "Unstake" ? "primary" : "default"}
-                                        onClick={() => clickTap("Unstake")}
-                                        className={` w-full `}
-                                        rounded
-                                    >
-                                        Unstake
-                                    </Button>
-                                </div>
-
-                                <div className="">
-                                    <div className="flex justify-between font-semibold  ">
-                                        <span>APY Percent</span>
-                                        <span>
-                                            <CountUp end={aprRate ? aprRate : 8.7} suffix="%" />
-                                        </span>
+                                <div className="text-lg flex gap-2 justify-center items-center">
+                                    <div className=" font-semibold">Total User :</div>
+                                    <div className="">
+                                        <CountUp
+                                            format="0,0"
+                                            end={totalStaker ? totalStaker : 0}
+                                        />
                                     </div>
-                                    <div className=" bg-white h-px my-4" />
-                                    <div className="flex justify-between items-center gap1 mt-8 mb-4">
-                                        <div className=" text-xl font-bold ">
-                                            Staked :&nbsp;
-                                            <span className=" font-normal">
-                                                <CountUp format="0,0.000" end={stakeShare} />
-                                            </span>
-                                            &nbsp; ZK
-                                        </div>
-                                        <div className=" ">
-                                            {isConnected ? (
-                                                <>
-                                                    My ZK <CountUp end={balance} />
-                                                </>
-                                            ) : (
-                                                <></>
-                                            )}
-                                        </div>
-                                    </div>
-                                    {pageText == "Stake" && !checkStakeValue && (
-                                        <div className=" text-[#ff0000]">
-                                            The stake amount is not available
-                                        </div>
-                                    )}
-                                    {pageText == "Unstake" && !checkUnstakeValue && (
-                                        <div className=" text-[#ff0000]">
-                                            The unstake amount is not available
-                                        </div>
-                                    )}
-                                    {!(
-                                        (pageText == "Stake" && !checkStakeValue) ||
-                                        (pageText == "Unstake" && !checkUnstakeValue)
-                                    ) && <div className=" invisible">&nbsp; </div>}
-                                    {!hasStake && pageText == "Unstake" ? (
-                                        <>
-                                            <div className="text-center text-2xl font-bold py-24 w-full">
-                                                <h3>No Staked Yet</h3>
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <div className="my-0">
-                                                <div className=" bg-background flex flex-col  sm:flex-row items-center justify-between rounded-md px-4 py-3 gap-4 ">
-                                                    <div className="flex  relative h-full w-full">
-                                                        <Image
-                                                            draggable="false"
-                                                            width={50}
-                                                            height={50}
-                                                            className="relative h-[40px] w-[40px] top-0 left-0 z-10 m-2 rounded-sm"
-                                                            src="/images/favicon.ico"
-                                                            alt="zk-token"
-                                                        />
-                                                        <input
-                                                            // disabled
-                                                            className=" absolute top-0 left-0 z-0 bg-transparent border-[1px] border-white rounded-md h-full pl-16 text-3xl focus:outline-none w-full appearance-none"
-                                                            type="number"
-                                                            placeholder="0.0"
-                                                            onChange={handleChange}
-                                                            value={amount}
-                                                        />
-                                                    </div>
-
-                                                    <div className="panel-btn w-full  sm:w-auto">
-                                                        {pageText == "Unstake" ? (
-                                                            <Button
-                                                                shadow="sm"
-                                                                onClick={unstakeHandle}
-                                                                className="w-full"
-                                                                type="primary"
-                                                            >
-                                                                Unstake
-                                                            </Button>
-                                                        ) : (
-                                                            <Button
-                                                                shadow="sm"
-                                                                onClick={stakeHandle}
-                                                                className="w-full"
-                                                                type="primary"
-                                                            >
-                                                                &nbsp;&nbsp;Stake&nbsp;&nbsp;
-                                                            </Button>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="mb-2 flex">
-                                                {numeral(amount * zkPrice).format("$0,0.00000") !==
-                                                    "$NaN"
-                                                    ? "~" + numeral(amount * zkPrice).format("$0,0.00000")
-                                                    : "$ 0"}
-                                            </div>
-                                        </>
-                                    )}
-                                </div>
-                                {!hasStake && pageText == "Unstake" ? (
-                                    <></>
-                                ) : (
-                                    <>
-                                        <div className="amount-btn-group grid grid-cols-2 w-full xs:grid-cols-4 xs:w-fit gap-4">
-                                            <Button
-                                                shadow="md"
-                                                type="primary"
-                                                size="sm"
-                                                className="w-full xs:w-24 py-[10px]"
-                                                onClick={() => changeStakeInput(25)}
-                                                rounded
-                                            >
-                                                25%
-                                            </Button>
-                                            <Button
-                                                shadow="md"
-                                                type="primary"
-                                                size="sm"
-                                                className="w-full xs:w-24 py-[10px]"
-                                                onClick={() => changeStakeInput(50)}
-                                                rounded
-                                            >
-                                                50 %
-                                            </Button>
-                                            <Button
-                                                shadow="md"
-                                                type="primary"
-                                                size="sm"
-                                                className="w-full xs:w-24 py-[10px]"
-                                                onClick={() => changeStakeInput(75)}
-                                                rounded
-                                            >
-                                                75 %
-                                            </Button>
-                                            <Button
-                                                shadow="md"
-                                                type="primary"
-                                                size="sm"
-                                                className="w-full xs:w-24 py-[10px]"
-                                                onClick={() => changeStakeInput(100)}
-                                                rounded
-                                            >
-                                                100 %
-                                            </Button>
-                                        </div>
-                                        <div className=" bg-gray-400 h-px my-4" />
-                                        <br />
-                                    </>
-                                )}
-                                <div className=" bg-background flex flex-col sm:flex-row items-center justify-between rounded-md px-4 py-3 gap-4 text-gray-300">
-                                    <div>
-                                        <span>
-                                            ZK{" "}
-                                            <span className="text-yellow-300">
-                                                {rewards > 0.0000001
-                                                    ? numeral(rewards).format("0,0.000000")
-                                                    : 0}
-                                            </span>
-                                        </span>
-                                        <div className="">
-                                            <div className="">
-                                                {numeral(rewards * zkPrice).format("$0,0.00000") !==
-                                                    "$NaN"
-                                                    ? numeral(rewards * zkPrice).format("$0,0.00000")
-                                                    : "$ 0"}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <Button
-                                        shadow="sm"
-                                        type="primary"
-                                        className="w-full  sm:w-auto"
-                                        onClick={claimHandle}
-                                    >
-                                        &nbsp; Claim&nbsp;
-                                    </Button>
                                 </div>
                             </div>
+                            <div className="flex flex-col xs:flex-row justify-between text-center w-full gap-8 my-4">
+                                <Button
+                                    shadow="md"
+                                    type={pageText == "Stake" ? "primary" : "default"}
+                                    onClick={() => clickTap("Stake")}
+                                    className={` w-full`}
+                                    rounded
+                                >
+                                    Stake
+                                </Button>
+                                <Button
+                                    shadow="md"
+                                    type={pageText == "Unstake" ? "primary" : "default"}
+                                    onClick={() => clickTap("Unstake")}
+                                    className={` w-full `}
+                                    rounded
+                                >
+                                    Unstake
+                                </Button>
+                            </div>
+
+                            <div className="">
+                                <div className="flex justify-between font-semibold  ">
+                                    <span>APY Percent</span>
+                                    <span>
+                                        <CountUp end={aprRate ? aprRate : 8.7} suffix="%" />
+                                    </span>
+                                </div>
+                                <div className=" bg-white h-px my-4" />
+                                <div className="flex justify-between items-center gap1 mt-8 mb-4">
+                                    <div className=" text-xl font-bold ">
+                                        Staked :&nbsp;
+                                        <span className=" font-normal">
+                                            <CountUp format="0,0.000" end={stakeShare} />
+                                        </span>
+                                        &nbsp; ZK
+                                    </div>
+                                    <div className=" ">
+                                        {isConnected ? (
+                                            <>
+                                                My ZK <CountUp end={balance} />
+                                            </>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                </div>
+                                {pageText == "Stake" && !checkStakeValue && (
+                                    <div className=" text-[#ff0000]">
+                                        The stake amount is not available
+                                    </div>
+                                )}
+                                {pageText == "Unstake" && !checkUnstakeValue && (
+                                    <div className=" text-[#ff0000]">
+                                        The unstake amount is not available
+                                    </div>
+                                )}
+                                {!(
+                                    (pageText == "Stake" && !checkStakeValue) ||
+                                    (pageText == "Unstake" && !checkUnstakeValue)
+                                ) && <div className=" invisible">&nbsp; </div>}
+                                {!hasStake && pageText == "Unstake" ? (
+                                    <>
+                                        <div className="text-center text-2xl font-bold py-24 w-full">
+                                            <h3>No Staked Yet</h3>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="my-0">
+                                            <div className=" bg-background flex flex-col  sm:flex-row items-center justify-between rounded-md px-4 py-3 gap-4 ">
+                                                <div className="flex  relative h-full w-full">
+                                                    <Image
+                                                        draggable="false"
+                                                        width={50}
+                                                        height={50}
+                                                        className="relative h-[40px] w-[40px] top-0 left-0 z-10 m-2 rounded-sm"
+                                                        src="/images/favicon.ico"
+                                                        alt="zk-token"
+                                                    />
+                                                    <input
+                                                        // disabled
+                                                        className=" absolute top-0 left-0 z-0 bg-transparent border-[1px] border-white rounded-md h-full pl-16 text-3xl focus:outline-none w-full appearance-none"
+                                                        type="number"
+                                                        placeholder="0.0"
+                                                        onChange={handleChange}
+                                                        value={amount}
+                                                    />
+                                                </div>
+
+                                                <div className="panel-btn w-full  sm:w-auto">
+                                                    {pageText == "Unstake" ? (
+                                                        <Button
+                                                            shadow="sm"
+                                                            onClick={unstakeHandle}
+                                                            className="w-full"
+                                                            type="primary"
+                                                        >
+                                                            Unstake
+                                                        </Button>
+                                                    ) : (
+                                                        <Button
+                                                            shadow="sm"
+                                                            onClick={stakeHandle}
+                                                            className="w-full"
+                                                            type="primary"
+                                                        >
+                                                            &nbsp;&nbsp;Stake&nbsp;&nbsp;
+                                                        </Button>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="mb-2 flex">
+                                            {numeral(amount * zkPrice).format("$0,0.00000") !==
+                                                "$NaN"
+                                                ? "~" + numeral(amount * zkPrice).format("$0,0.00000")
+                                                : "$ 0"}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                            {!hasStake && pageText == "Unstake" ? (
+                                <></>
+                            ) : (
+                                <>
+                                    <div className="amount-btn-group grid grid-cols-2 w-full xs:grid-cols-4 xs:w-fit gap-4">
+                                        <Button
+                                            shadow="md"
+                                            type="primary"
+                                            size="sm"
+                                            className="w-full xs:w-24 py-[10px]"
+                                            onClick={() => changeStakeInput(25)}
+                                            rounded
+                                        >
+                                            25%
+                                        </Button>
+                                        <Button
+                                            shadow="md"
+                                            type="primary"
+                                            size="sm"
+                                            className="w-full xs:w-24 py-[10px]"
+                                            onClick={() => changeStakeInput(50)}
+                                            rounded
+                                        >
+                                            50 %
+                                        </Button>
+                                        <Button
+                                            shadow="md"
+                                            type="primary"
+                                            size="sm"
+                                            className="w-full xs:w-24 py-[10px]"
+                                            onClick={() => changeStakeInput(75)}
+                                            rounded
+                                        >
+                                            75 %
+                                        </Button>
+                                        <Button
+                                            shadow="md"
+                                            type="primary"
+                                            size="sm"
+                                            className="w-full xs:w-24 py-[10px]"
+                                            onClick={() => changeStakeInput(100)}
+                                            rounded
+                                        >
+                                            100 %
+                                        </Button>
+                                    </div>
+                                    <div className=" bg-gray-400 h-px my-4" />
+                                    <br />
+                                </>
+                            )}
+                            <div className=" bg-background flex flex-col sm:flex-row items-center justify-between rounded-md px-4 py-3 gap-4 text-gray-300">
+                                <div>
+                                    <span>
+                                        ZK{" "}
+                                        <span className="text-yellow-300">
+                                            {rewards > 0.0000001
+                                                ? numeral(rewards).format("0,0.000000")
+                                                : 0}
+                                        </span>
+                                    </span>
+                                    <div className="">
+                                        <div className="">
+                                            {numeral(rewards * zkPrice).format("$0,0.00000") !==
+                                                "$NaN"
+                                                ? numeral(rewards * zkPrice).format("$0,0.00000")
+                                                : "$ 0"}
+                                        </div>
+                                    </div>
+                                </div>
+                                <Button
+                                    shadow="sm"
+                                    type="primary"
+                                    className="w-full  sm:w-auto"
+                                    onClick={claimHandle}
+                                >
+                                    &nbsp; Claim&nbsp;
+                                </Button>
+                            </div>
                         </div>
-                    ) : (
+                    </div>
+                    {/* ) : (
                         <CoinSpinner size="xl" className="m-auto" />
-                    )}
+                    )} */}
                 </section>
                 <ConfirmBox
                     amount={amount}
