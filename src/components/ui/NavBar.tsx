@@ -67,13 +67,31 @@ const NavBar = () => {
                     </div>
                     <div className=" flex items-center gap-2">
                         <Button type="dark" size="sm" aria-label="Telegram" rounded>
-                            <FaTelegramPlane className="  text-2xl" />
+                            <Link
+                                href={"https://t.me/zkBusinessOffcial"}
+                                className=""
+                                target={"_blink"}
+                            >
+                                <FaTelegramPlane className="  text-2xl" />
+                            </Link>
                         </Button>
                         <Button type="dark" size="sm" aria-label="Discord" rounded>
-                            <FaDiscord className="  text-2xl" />
+                            <Link
+                                href={"https://discord.gg/CVFsSXRqZ6"}
+                                className=""
+                                target={"_blink"}
+                            >
+                                <FaDiscord className="  text-2xl" />
+                            </Link>
                         </Button>
                         <Button type="dark" size="sm" aria-label="Twitter" rounded>
-                            <BsTwitterX className="  text-2xl" />
+                            <Link
+                                href={"https://x.com/zkbusinessland"}
+                                className=""
+                                target={"_blink"}
+                            >
+                                <BsTwitterX className="  text-2xl" />
+                            </Link>
                         </Button>
 
                         <ConnectButton />
