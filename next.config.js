@@ -4,6 +4,8 @@ const withbundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
 
+const withTM = require('next-transpile-modules')(['react-discord-login']);
+
 const nextConfig = {
   reactStrictMode: true,
   webpack: (config, { dev, isServer }) => {
@@ -14,8 +16,9 @@ const nextConfig = {
     if (dev) {
       config.stats = 'errors-only';
     }
-    return config
+    return config;
   },
+
 };
 
-module.exports = withbundleAnalyzer(nextConfig);
+module.exports = withTM(withbundleAnalyzer(nextConfig));
