@@ -87,7 +87,7 @@ const NavBar = () => {
                             </Button>
                         </Link>
                         <ConnectButton />
-                        {isConnected && <Link href="/profile"><Avatar src={process.env.NEXT_PUBLIC_SERVER_URL + userInfo.avatarUrl} size="sm" /></Link>}
+                        {isConnected && <Link href="/profile"><Avatar src={userInfo.avatarUrl} size="sm" /></Link>}
                     </div>
                 </div>
 
@@ -172,7 +172,7 @@ const NavBar = () => {
                     <div className="flex gap-2 w-fit mx-auto items-center">
                         <ConnectButton />{isConnected && <Link href="/profile" onClick={() => {
                             setVisibleMenu(() => false);
-                        }}><Avatar src={process.env.NEXT_PUBLIC_SERVER_URL + userInfo.avatarUrl} size="xs" /></Link>}
+                        }}><Avatar src={userInfo.avatarUrl} size="xs" /></Link>}
                     </div>
                 </div>
             )}
