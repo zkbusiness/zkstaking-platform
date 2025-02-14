@@ -11,6 +11,7 @@ import Button from "@components/ui/Button";
 import VideoBackgroundWrapper from "@components/ui/VIdeoWrapper";
 import { CountUp } from "@components/ui/CountUp";
 import CoinSpinner from "@components/ui/CoinSpinner";
+import { useUserInfo } from "@contexts/UserInfoContext";
 
 const StakeLayout: NextPage = () => {
     const {
@@ -27,6 +28,7 @@ const StakeLayout: NextPage = () => {
     } = useStakeContext();
 
     const { isConnected } = useAccount();
+    const { setUserInfo, userInfo } = useUserInfo();
 
     const [pageText, setPageText] = useState("Stake");
     const [isOpen, toggle] = useState(false);
@@ -124,7 +126,22 @@ const StakeLayout: NextPage = () => {
 
     useEffect(() => {
         setAmount(0);
+
     }, [pageText]);
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const referralCodeFromLink = urlParams.get('code');
+
+        if (!localStorage.getItem("referralCodeFromLink")) {
+            if (referralCodeFromLink) {
+                localStorage.setItem("referralCodeFromLink", referralCodeFromLink);
+            } else {
+                localStorage.setItem("referralCodeFromLink", "web search");
+            }
+        }
+    }, [setUserInfo]);
+
 
     return (
         <div className="  relative -top-24  ">

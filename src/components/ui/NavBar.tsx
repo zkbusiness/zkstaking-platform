@@ -10,10 +10,15 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import { useScreenWidth } from "@hooks/useScreenWidth";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
+import { Avatar } from "./Avatar";
+import { useUserInfo } from "@contexts/UserInfoContext";
 
 const NavBar = () => {
+    const { userInfo } = useUserInfo();
     const [visibleMenu, setVisibleMenu] = useState(false);
     const isNarrowScreen = useScreenWidth();
+    const { isConnected } = useAccount();
 
     useEffect(() => {
         if (visibleMenu) document.body.style.overflow = "hidden";
@@ -66,35 +71,23 @@ const NavBar = () => {
                         ))}
                     </div>
                     <div className=" flex items-center gap-2">
-                        <Button type="dark" size="sm" aria-label="Telegram" rounded>
-                            <Link
-                                href={"https://t.me/zkBusinessOffcial"}
-                                className=""
-                                target={"_blink"}
-                            >
+                        <Link href="https://t.me/zkBusinessOffcial" target="blank" >
+                            <Button type="dark" size="sm" aria-label="Telegram" rounded>
                                 <FaTelegramPlane className="  text-2xl" />
-                            </Link>
-                        </Button>
-                        <Button type="dark" size="sm" aria-label="Discord" rounded>
-                            <Link
-                                href={"https://discord.gg/CVFsSXRqZ6"}
-                                className=""
-                                target={"_blink"}
-                            >
-                                <FaDiscord className="  text-2xl" />
-                            </Link>
-                        </Button>
-                        <Button type="dark" size="sm" aria-label="Twitter" rounded>
-                            <Link
-                                href={"https://x.com/zkbusinessland"}
-                                className=""
-                                target={"_blink"}
-                            >
+                            </Button>
+                        </Link>
+                        <Link href="https://discord.gg/CVFsSXRqZ6" target="blank" >
+                            <Button type="dark" size="sm" aria-label="Discord" rounded>
+                                <FaDiscord className="text-2xl" />
+                            </Button>
+                        </Link>
+                        <Link href="https://x.com/zkbusinessland" target="blank" >
+                            <Button type="dark" size="sm" aria-label="Twitter" rounded>
                                 <BsTwitterX className="  text-2xl" />
-                            </Link>
-                        </Button>
-
+                            </Button>
+                        </Link>
                         <ConnectButton />
+                        {isConnected && <Link href="/profile"><Avatar src={process.env.NEXT_PUBLIC_SERVER_URL + userInfo.avatarUrl} size="sm" /></Link>}
                     </div>
                 </div>
 
@@ -136,36 +129,50 @@ const NavBar = () => {
                         </Link>
                     ))}
                     <div className=" flex items-center gap-2 justify-center">
-                        <Button
-                            aria-label="Telegram"
-                            type="dark"
-                            size="sm"
-                            rounded
-                            onClick={() => setVisibleMenu(() => false)}
-                        >
-                            <FaTelegramPlane />
-                        </Button>
-                        <Button
-                            aria-label="Discord"
-                            type="dark"
-                            size="sm"
-                            rounded
-                            onClick={() => setVisibleMenu(() => false)}
-                        >
-                            <FaDiscord />
-                        </Button>
-                        <Button
-                            aria-label="Twitter"
-                            type="dark"
-                            size="sm"
-                            rounded
-                            onClick={() => setVisibleMenu(() => false)}
-                        >
-                            <BsTwitterX />
-                        </Button>
+                        <Link href="https://t.me/zkBusinessOffcial" target="blank" >
+                            <Button
+                                aria-label="Telegram"
+                                type="dark"
+                                size="sm"
+                                rounded
+                                onClick={() => {
+                                    setVisibleMenu(() => false);
+                                }}
+                            >
+                                <FaTelegramPlane />
+                            </Button>
+                        </Link>
+                        <Link href="https://discord.gg/CVFsSXRqZ6" target="blank" >
+                            <Button
+                                aria-label="Discord"
+                                type="dark"
+                                size="sm"
+                                rounded
+                                onClick={() => {
+                                    setVisibleMenu(() => false);
+                                }}
+                            >
+                                <FaDiscord />
+                            </Button>
+                        </Link>
+                        <Link href="https://x.com/zkbusinessland" target="blank" >
+                            <Button
+                                aria-label="Twitter"
+                                type="dark"
+                                size="sm"
+                                rounded
+                                onClick={() => {
+                                    setVisibleMenu(() => false);
+                                }}
+                            >
+                                <BsTwitterX />
+                            </Button>
+                        </Link>
                     </div>
-                    <div className=" w-fit mx-auto">
-                        <ConnectButton />
+                    <div className="flex gap-2 w-fit mx-auto items-center">
+                        <ConnectButton />{isConnected && <Link href="/profile" onClick={() => {
+                            setVisibleMenu(() => false);
+                        }}><Avatar src={process.env.NEXT_PUBLIC_SERVER_URL + userInfo.avatarUrl} size="xs" /></Link>}
                     </div>
                 </div>
             )}

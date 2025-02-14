@@ -1,5 +1,6 @@
 import Select from "@components/ui/Select";
 import { useScreenWidth } from "@hooks/useScreenWidth";
+import axiosRequest from "@utils/axiosRequest";
 import { formatNumber } from "@utils/index";
 import React, { useEffect, useState } from "react";
 import {
@@ -44,7 +45,7 @@ const LineChartStakeChange = () => {
     const [chartData, setChartData] = useState<any>([]);
     const [data, setData] = useState<any>([]);
     const [view, setView] = useState("week");
-    const [activeLines, setActiveLines] = useState<ActivedLineType>({ min: false, avg: true, max: false })
+    const [activeLines, setActiveLines] = useState<ActivedLineType>({ min: false, avg: true, max: false });
 
     const handleLegendClick = (dataKey: string) => {
         setActiveLines((prev) => ({
@@ -52,7 +53,7 @@ const LineChartStakeChange = () => {
             [dataKey]: !prev[dataKey as LineKeys],
         }));
     };
-    const CustomLegend = ({ onClick }: { onClick: Function }) => {
+    const CustomLegend = ({ onClick }: { onClick: Function; }) => {
         return (
             <ul className="recharts-legend flex  justify-self-center gap-2 items-center">
                 {["min", "avg", "max"]?.map((value, index) => {
@@ -76,12 +77,12 @@ const LineChartStakeChange = () => {
 
     const setCharDataByTypes = (data: any) => {
         let returnValue = data.map(({ time, min, max, avg }: DataPoint) => {
-            let temp: DataPoint = { time, min, max, avg }
-            if (!activeLines.min) delete temp.min
-            if (!activeLines.avg) delete temp.avg
-            if (!activeLines.max) delete temp.max
-            return temp
-        })
+            let temp: DataPoint = { time, min, max, avg };
+            if (!activeLines.min) delete temp.min;
+            if (!activeLines.avg) delete temp.avg;
+            if (!activeLines.max) delete temp.max;
+            return temp;
+        });
         const allValues = returnValue.flatMap((item: any) => {
             // Create an array with existing numeric values
             return [item?.min, item?.max, item?.avg].filter(value => value !== undefined);
@@ -90,26 +91,23 @@ const LineChartStakeChange = () => {
         // Find the smallest value
         const smallestValue = Math.min(...allValues);
         setDomainStart(smallestValue);
-        setChartData(returnValue)
+        setChartData(returnValue);
 
-    }
-
-    useEffect(() => {
-        setCharDataByTypes(data)
-    }, [activeLines, data])
+    };
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/history/${view}`, {
-            method: "GET",
-            headers: {
-                "content-type": "application/json",
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
+        setCharDataByTypes(data);
+    }, [activeLines, data]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const data = await axiosRequest.get(`/history/${view}`);
                 setData(data);
-            })
-            .catch((err) => { });
+            } catch (err) {
+                console.log(err);
+            }
+        })();
     }, [view]);
 
     return (

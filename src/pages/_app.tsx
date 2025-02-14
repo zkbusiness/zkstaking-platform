@@ -15,6 +15,7 @@ import { config } from "@config/index";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { darkTheme, RainbowKitProvider, Theme } from "@rainbow-me/rainbowkit";
 import merge from "lodash.merge";
+import { UserInfoProvider } from "@contexts/UserInfoContext";
 
 const client = new QueryClient();
 
@@ -64,13 +65,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         <QueryClientProvider client={client}>
           <RainbowKitProvider coolMode={false} theme={myTheme}>
             <StakeContextProvider>
-              <main className=" flex justify-center">
-                <div className=" px-0  w-full xl:max-w-[1500px] ">
-                  <NavBar />
-                  <Component {...pageProps} />
-                  <Footer />
-                </div>
-              </main>
+              <UserInfoProvider>
+                <main className=" flex justify-center">
+                  <div className=" px-0  w-full xl:max-w-[1500px] ">
+                    <NavBar />
+                    <Component {...pageProps} />
+                    <Footer />
+                  </div>
+                </main>
+              </UserInfoProvider>
             </StakeContextProvider>
           </RainbowKitProvider>
         </QueryClientProvider>
