@@ -75,7 +75,7 @@ export function Avatar({ src = '', alt = "Avatar", size = "md", className, canUp
             onMouseLeave={() => setHover(false)}
         >
             <img
-                src={imageSrc || "/images/default_avatar.png"}
+                src={imageSrc ? process.env.NEXT_PUBLIC_SERVER_URL + imageSrc : "/images/default_avatar.png"}
                 alt={alt}
                 className="transition-all h-full w-auto object-cover"
             />

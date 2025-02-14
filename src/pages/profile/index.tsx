@@ -37,7 +37,7 @@ const Profile: NextPage = () => {
                         <div className="bg-gray-800 shadow-xl rounded-lg overflow-hidden">
                             <div className="px-4 py-8 sm:px-10 sm:py-10">
                                 <div className="flex flex-col sm:flex-row items-center mb-8">
-                                    <Avatar size="lg" canUpload src={process.env.NEXT_PUBLIC_SERVER_URL + userInfo.avatarUrl} onUpload={onAvatarUpload} />
+                                    <Avatar size="lg" canUpload src={userInfo.avatarUrl} onUpload={onAvatarUpload} />
                                     <div className="mt-6 sm:mt-0 sm:ml-6 text-center sm:text-left">
                                         <EditUsername />
                                         <div className="mt-2 text-start text-gray-400">
