@@ -11,6 +11,7 @@ import { CountUp } from "@components/ui/CountUp";
 import CoinSpinner from "@components/ui/CoinSpinner";
 import LineChartStakeChange from "@components/Dashboard/LineChartStakeChange";
 import numeral from "numeral";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 const Dashboard: NextPage = () => {
     const {
@@ -26,6 +27,7 @@ const Dashboard: NextPage = () => {
     } = useStakeContext();
 
     const { address, isConnected } = useAccount();
+    const { openConnectModal } = useConnectModal();
 
     const [pieLoadTime, setPieLoadTime] = useState<boolean>(false);
     const isMobile = useScreenWidth(1200);
@@ -263,7 +265,7 @@ const Dashboard: NextPage = () => {
                     )}
                 </>
             ) : (
-                <div className="text-[#4075FF]   text-sm md:text-xl font-bold my-24">
+                <div onClick={openConnectModal} className="text-[#4075FF] hover:cursor-pointer hover:scale-110 text-sm md:text-xl font-bold my-24">
                     Connect wallet to join
                 </div>
             )}

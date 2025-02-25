@@ -8,16 +8,18 @@ import { useScreenWidth } from "@hooks/useScreenWidth";
 import Button from "@components/ui/Button";
 import { CountUp } from "@components/ui/CountUp";
 import { ReferralTable } from "@components/Referrals/ReferralTable";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 const Profile: NextPage = () => {
     const { isConnected } = useAccount();
     const { userInfo } = useUserInfo();
     const isNarrowScreen = useScreenWidth(860);
+    const { openConnectModal } = useConnectModal();
 
     return (
         <>
             {!isConnected ? <> <h2 className=" text-5xl text-center font-bold mt-16 mb-6">Referrals</h2>
-                <div className="text-[#4075FF] text-center text-sm md:text-xl font-bold my-24">
+                <div onClick={openConnectModal} className="text-[#4075FF] hover:cursor-pointer hover:scale-110 text-center text-sm md:text-xl font-bold my-24">
                     Connect wallet to join
                 </div> </> : userInfo.isLoading ? <div className="w-full flex justify-center items-center">
                     <CoinSpinner size="xl" />

@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Button from "./Button";
 import { useScreenWidth } from "@hooks/useScreenWidth";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import { Avatar } from "./Avatar";
 import { useUserInfo } from "@contexts/UserInfoContext";
@@ -19,6 +19,7 @@ const NavBar = () => {
     const [visibleMenu, setVisibleMenu] = useState(false);
     const isNarrowScreen = useScreenWidth();
     const { isConnected } = useAccount();
+    const { openConnectModal } = useConnectModal();
 
     useEffect(() => {
         if (visibleMenu) document.body.style.overflow = "hidden";
