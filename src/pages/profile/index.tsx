@@ -10,12 +10,14 @@ import CoinSpinner from "@components/ui/CoinSpinner";
 import { Avatar } from "@components/ui/Avatar";
 import Copier from "@components/ui/Copier";
 import { useScreenWidth } from "@hooks/useScreenWidth";
+import { useConnectModal } from "@rainbow-me/rainbowkit";
 
 
 const Profile: NextPage = () => {
     const isNarrowScreen = useScreenWidth(860);
     const { isConnected } = useAccount();
     const { userInfo, setUserInfo } = useUserInfo();
+    const { openConnectModal } = useConnectModal();
 
     const onAvatarUpload = (url: string) => {
         setUserInfo({
@@ -27,7 +29,7 @@ const Profile: NextPage = () => {
     return (
         <>
             {!isConnected ? <> <h2 className=" text-5xl text-center font-bold mt-16 mb-6">Profile Page</h2>
-                <div className="text-[#4075FF] text-center text-sm md:text-xl font-bold my-24">
+                <div onClick={openConnectModal} className="text-[#4075FF] hover:cursor-pointer hover:scale-110 text-center text-sm md:text-xl font-bold my-24">
                     Connect wallet to join
                 </div> </> : userInfo.isLoading ? <div className="w-full flex justify-center items-center">
                     <CoinSpinner size="xl" />
